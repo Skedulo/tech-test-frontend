@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+h1 {
+  margin: 0;
+  margin-bottom: 10px;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+h2 {
+  margin: 0;
+  margin-bottom: 10px;
+  font-size: 1.4em;
+  font-weight: 600;
+}
+
+input {
+  border: 1px solid #d4d7de;
+  border-radius: 2px;
+  padding: 4px 7px;
+}
