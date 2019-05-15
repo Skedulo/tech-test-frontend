@@ -53,3 +53,22 @@
 .section__panel:last-child {
   border-bottom-color: transparent
 }
+
+.form__group {
+  position: relative;
+  display: inline-block;
+}
+
+.form__group label {
+  margin-right: 1rem;
+}
+
+.form__group input {
+  padding-right: 2rem;
+}
+
+.spinner__container {
+  position: absolute;
+  right: 5px;
+  top: 3px;
+}

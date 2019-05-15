@@ -1,0 +1,157 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`JobCard Component snapshots expect contact name to be rendered 1`] = `
+<div
+  className="job-card__container"
+>
+  <p
+    className="job-card__name"
+  >
+    <span>
+      Job
+    </span>
+    Jean-Ralphio Saperstein
+  </p>
+  <p
+    className="job-card__start-time"
+  >
+    <span>
+      Start Time
+    </span>
+    September 2nd 2018, 1:00:00 am
+  </p>
+  <p
+    className="job-card__end-time"
+  >
+    <span>
+      End Time
+    </span>
+    September 2nd 2018, 2:00:00 am
+  </p>
+  <p
+    className="job-card__contact-name"
+  >
+    <span>
+      Contact
+    </span>
+    Tom Haverford
+  </p>
+</div>
+`;
+
+exports[`JobCard Component snapshots expect end time to be rendered and formatted 1`] = `
+<div
+  className="job-card__container"
+>
+  <p
+    className="job-card__name"
+  >
+    <span>
+      Job
+    </span>
+    Jean-Ralphio Saperstein
+  </p>
+  <p
+    className="job-card__start-time"
+  >
+    <span>
+      Start Time
+    </span>
+    September 2nd 2018, 1:00:00 am
+  </p>
+  <p
+    className="job-card__end-time"
+  >
+    <span>
+      End Time
+    </span>
+    September 2nd 2018, 2:00:00 am
+  </p>
+  <p
+    className="job-card__contact-name"
+  >
+    <span>
+      Contact
+    </span>
+    Tom Haverford
+  </p>
+</div>
+`;
+
+exports[`JobCard Component snapshots expect name to be rendered 1`] = `
+<div
+  className="job-card__container"
+>
+  <p
+    className="job-card__name"
+  >
+    <span>
+      Job
+    </span>
+    Jean-Ralphio Saperstein
+  </p>
+  <p
+    className="job-card__start-time"
+  >
+    <span>
+      Start Time
+    </span>
+    September 2nd 2018, 1:00:00 am
+  </p>
+  <p
+    className="job-card__end-time"
+  >
+    <span>
+      End Time
+    </span>
+    September 2nd 2018, 2:00:00 am
+  </p>
+  <p
+    className="job-card__contact-name"
+  >
+    <span>
+      Contact
+    </span>
+    Tom Haverford
+  </p>
+</div>
+`;
+
+exports[`JobCard Component snapshots expect start time to be rendered and formatted 1`] = `
+<div
+  className="job-card__container"
+>
+  <p
+    className="job-card__name"
+  >
+    <span>
+      Job
+    </span>
+    Jean-Ralphio Saperstein
+  </p>
+  <p
+    className="job-card__start-time"
+  >
+    <span>
+      Start Time
+    </span>
+    September 2nd 2018, 1:00:00 am
+  </p>
+  <p
+    className="job-card__end-time"
+  >
+    <span>
+      End Time
+    </span>
+    September 2nd 2018, 2:00:00 am
+  </p>
+  <p
+    className="job-card__contact-name"
+  >
+    <span>
+      Contact
+    </span>
+    Tom Haverford
+  </p>
+</div>
+`;

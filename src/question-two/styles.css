@@ -1,0 +1,31 @@
+.react-calendar-timeline .rct-header-root {
+    background: #007ee6;
+    border-bottom: 1px solid #bbb;
+}
+
+.event__container {
+    border: 1px solid #ccc;
+    box-shadow: 2px 5px 5px #ccc;
+    padding: 1rem 0;
+    margin: 1rem 0;
+}
+
+.event__title, .event__resource, .event__start-time, .event__end-time, .event__contact-name {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    padding: .5rem 1rem;
+}
+.event__title span {
+    text-transform: capitalize;
+}
+
+.event__title span, .event__resource span, .event__start-time span, .event__end-time span, .event__contact-name span {
+    display: inline-block;
+    padding-right: 1rem;
+    min-width: 160px;
+    font-weight: bold;
+}
+
+.event__title span:after, .event__resource span:after, .event__start-time span:after, .event__end-time span:after, .event__contact-name span:after {
+    content: ": ";
+}

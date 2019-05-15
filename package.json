@@ -3,21 +3,41 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "apollo-boost": "^0.1.15",
+    "apollo-boost": "^0.3.1",
     "axios": "^0.18.0",
-    "graphql": "^14.0.2",
-    "graphql-tag": "^2.9.2",
-    "react": "^16.5.0",
-    "react-dom": "^16.5.0",
-    "react-scripts": "1.1.5"
+    "classnames": "^2.2.6",
+    "graphql": "^14.3.0",
+    "graphql-tag": "^2.10.1",
+    "interactjs": "^1.4.1",
+    "luxon": "^1.13.2",
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.25",
+    "react": "^16.8.6",
+    "react-calendar-timeline": "^0.25.1",
+    "react-dom": "^16.8.6",
+    "react-scripts": "1.1.5",
+    "react-spinners": "^0.5.4",
+    "react-test-renderer": "^16.8.6",
+    "react-use": "^8.4.0",
+    "rxjs": "^6.5.2"
+  },
+  "devDependencies": {
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.13.0",
+    "enzyme-to-json": "^3.3.5"
   },
   "scripts": {
     "bootstrap": "npm install && npm run server:bootstrap",
-    "start": "react-scripts start & npm run server:start",
+    "start": "react-scripts start | npm run server:start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "server:bootstrap": "cd ./src/server && npm install",
     "server:start": "cd ./src/server && npm run dev"
+  },
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   }
 }

@@ -1,0 +1,39 @@
+.react-calendar-timeline .rct-header-root {
+    background: #007ee6;
+    border-bottom: 1px solid #bbb;
+}
+
+.event-card__container {
+    border: 1px solid #ccc;
+    box-shadow: 2px 5px 5px #ccc;
+    padding: 1rem 0;
+    margin: 1rem 0;
+}
+
+.event-card__container.job {
+    border: 2px solid #5F8F0C;
+}
+
+.event-card__container.activity {
+    border: 2px solid #986FAC;
+}
+
+.event-card__title, .event-card__resource, .event-card__start-time, .event-card__end-time, .event-card__contact-name {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    padding: .5rem 1rem;
+}
+.event-card__title span {
+    text-transform: capitalize;
+}
+
+.event-card__title span, .event-card__resource span, .event-card__start-time span, .event-card__end-time span, .event-card__contact-name span {
+    display: inline-block;
+    padding-right: 1rem;
+    min-width: 160px;
+    font-weight: bold;
+}
+
+.event-card__title span:after, .event-card__resource span:after, .event-card__start-time span:after, .event-card__end-time span:after, .event-card__contact-name span:after {
+    content: ": ";
+}

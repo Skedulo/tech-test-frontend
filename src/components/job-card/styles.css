@@ -1,0 +1,23 @@
+.job-card__container {
+    border: 1px solid #ccc;
+    box-shadow: 2px 5px 5px #ccc;
+    padding: 1rem 0;
+    margin: 1rem 0;
+}
+
+.job-card__name, .job-card__start-time, .job-card__end-time, .job-card__contact-name {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    padding: .5rem 1rem;
+}
+
+.job-card__name span, .job-card__start-time span, .job-card__end-time span, .job-card__contact-name span {
+    display: inline-block;
+    padding-right: 1rem;
+    min-width: 160px;
+    font-weight: bold;
+}
+
+.job-card__name span:after, .job-card__start-time span:after, .job-card__end-time span:after, .job-card__contact-name span:after {
+    content: ": ";
+}
