@@ -43,6 +43,9 @@
   border-radius: 2px;
 }
 
+.app__content-blank {
+  height: calc(100vh - 92px)
+}
 
 .section__panel {
   padding-bottom: 15px;

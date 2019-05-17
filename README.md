@@ -22,5 +22,5 @@ Run:
 
 ## Instructions
 
-Please complete the exercises provided on the 'Question One' and 'Question Two' pages
+Please complete the exercises provided on the 'Question One', 'Question Two' and 'Question Three' pages
 

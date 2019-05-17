@@ -3,14 +3,12 @@ import React, { Component } from 'react';
 import { SectionGroup } from '../components/section/SectionGroup'
 import { SectionPanel } from '../components/section/SectionPanel'
 
-import './QuestionOne.css'
+import './QuestionThree.css'
 
-export class QuestionOne extends Component {
+export class QuestionThree extends Component {
   constructor(props) {
     super(props)
-
-    this.state = {
-    }
+    this.state = { }
   }
 
   render() {

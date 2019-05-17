@@ -3,12 +3,14 @@ import React, { Component } from 'react'
 import { DataService } from './service/DataService'
 import { QuestionOne } from './question-one/QuestionOne'
 import { QuestionTwo } from './question-two/QuestionTwo'
+import { QuestionThree } from './question-three/QuestionThree'
 
 import './App.css'
 
 const AppTabs = {
   First: 'first',
-  Second: 'second'
+  Second: 'second',
+  Third: 'three'
 }
 
 class App extends Component {
@@ -32,12 +34,17 @@ class App extends Component {
       <div className="app__tab-group">
         <div className={ 'app__tab ' + (this.state.selectedTab === AppTabs.First ? 'app__tab--selected' : '') } onClick={ () => this.setSelectedTab(AppTabs.First) }>First Question</div>
         <div className={ 'app__tab ' + (this.state.selectedTab === AppTabs.Second ? 'app__tab--selected' : '') } onClick={ () => this.setSelectedTab(AppTabs.Second) }>Second Question</div>
+        <div className={ 'app__tab ' + (this.state.selectedTab === AppTabs.Third ? 'app__tab--selected' : '') } onClick={ () => this.setSelectedTab(AppTabs.Third) }>Third Question</div>
       </div>
     )
   }
 
   renderContent = () => {
     switch (this.state.selectedTab) {
+      case AppTabs.Third:
+        return (
+          <QuestionThree service={ DataService } />
+        )
       case AppTabs.Second:
         return (
           <QuestionTwo service={ DataService } />
@@ -57,7 +64,7 @@ class App extends Component {
           <h1 className="app__title">Skedulo Technical Test</h1>
           { this.renderTabs() }
         </header>
-        <div className="app__content">
+        <div className={ this.state.selectedTab !== AppTabs.Third ? 'app__content' : 'app__content-blank' }>
           { this.renderContent() }
         </div>
       </div>
