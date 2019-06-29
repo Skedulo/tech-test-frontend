@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 
 import { SectionGroup } from "../components/section/SectionGroup";
 import { SectionPanel } from "../components/section/SectionPanel";
@@ -23,143 +23,105 @@ const SearchResult = ({ name, start, end, contactName }) => (
   </div>
 );
 
-const RESULTS = [
-  {
-    contactId: "0",
-    end: "2018-09-01T11:00:00Z",
-    id: 0,
-    location: "Brisbane",
-    name: "Build a fence",
-    start: "2018-09-01T10:00:00Z"
-  },
-  {
-    contactId: "1",
-    end: "2018-09-01T11:00:00Z",
-    id: 1,
-    location: "Brisbane",
-    name: "Build a shed",
-    start: "2018-09-01T10:15:00Z"
-  },
-  {
-    contactId: "0",
-    end: "2018-09-01T13:00:00Z",
-    id: 2,
-    location: "Brisbane",
-    name: "Shield some wiring",
-    start: "2018-09-01T09:00:00Z"
-  },
-  {
-    contactId: "0",
-    end: "2018-09-01T13:15:00Z",
-    id: 3,
-    location: "Brisbane",
-    name: "Pick up a trailer",
-    start: "2018-09-01T13:00:00Z"
-  }
-];
+const useDebounce = (value, delay = 200) => {
+  const [debouncedValue, setDebouncedValue] = useState(undefined);
 
-// Returns a function, that, as long as it continues to be invoked, will not
-// be triggered. The function will be called after it stops being called for
-// N milliseconds. If `immediate` is passed, trigger the function on the
-// leading edge, instead of the trailing.
-function debounce(func, wait, immediate) {
-  var timeout;
-  return function() {
-    var context = this,
-      args = arguments;
-    var later = function() {
-      timeout = null;
-      if (!immediate) func.apply(context, args);
-    };
-    var callNow = immediate && !timeout;
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-    if (callNow) func.apply(context, args);
-  };
-}
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+    return () => clearTimeout(timeout);
+  }, [delay, value]);
 
-export class QuestionOne extends Component {
-  constructor(props) {
-    super(props);
+  return [debouncedValue];
+};
 
-    this.state = {
-      search: "",
-      isFetching: false,
-      results: []
-    };
-  }
+const useFetch = (asyncRequestFunc, arg) => {
+  const [isFetching, setIsFetching] = useState(undefined);
+  const [response, setResponse] = useState(undefined);
+  const [error, setError] = useState(undefined);
 
-  pendingSearches = [];
+  const shouldSkipFetch = arg === false;
 
-  handleChange = e => {
-    const search = e.target.value;
-    this.setState({
-      isFetching: false
-    });
-    this.debouncedUpdateSearch(search);
-  };
+  useEffect(() => {
+    if (shouldSkipFetch) {
+      setIsFetching(false);
+      setResponse(undefined);
+      setError(undefined);
+      return;
+    }
 
-  debouncedUpdateSearch = debounce(search => {
-    this.setState(() => ({
-      search
-    }));
-  }, 1000);
-
-  fetchSearchResults = async () => {
-    this.setState(
-      () => ({ isFetching: true }),
-      async () => {
-        try {
-          const results = await this.props.service.getJobsWithSearchTerm(
-            this.state.search
-          );
-          if (this.state.isFetching) {
-            this.setState({ results, isFetching: false });
-          }
-        } catch (err) {
-          alert("Sorry, your search failed.");
-          this.setState({ isFetching: false });
-        }
+    setIsFetching(true);
+    let tempResponse;
+    let tempError;
+    let wasAborted = false;
+    async function fetch() {
+      try {
+        tempResponse = await asyncRequestFunc(arg);
+      } catch (err) {
+        tempError = err;
       }
-    );
-  };
 
-  clearSearchResults = () => {
-    this.setState({ results: [] });
-  };
+      if (!wasAborted) {
+        setIsFetching(false);
+        setResponse(tempResponse);
+        setError(tempError);
+      }
+    }
+    fetch();
+    return () => {
+      wasAborted = true;
+    };
+  }, [arg, asyncRequestFunc, shouldSkipFetch]);
 
-  componentDidUpdate(_prevProps, prevState) {
-    if (prevState.search === this.state.search) {
-      return;
-    }
-    if (this.state.search === "") {
-      this.clearSearchResults();
-      return;
-    }
-    if (this.state.search.length > 2) {
-      this.fetchSearchResults();
-      return;
-    }
-  }
+  return [isFetching, response, error];
+};
 
-  render() {
-    return (
-      <SectionGroup>
-        <SectionPanel>
-          <Input label="Job Search" onChange={this.handleChange} />
-          {this.state.isFetching && (
-            <span>Fetching... {this.state.search}</span>
-          )}
-          {this.state.results.map(({ name, start, end, contact }) => (
+const isStringOfAtLeast3Chars = str =>
+  typeof str === "string" && str.length > 2;
+
+const useSearch = (fetchSearchResultsFunc, search) => {
+  const [debouncedSearch] = useDebounce(search);
+  const shouldSearch = isStringOfAtLeast3Chars(debouncedSearch);
+  const [isFetching, results, error] = useFetch(
+    fetchSearchResultsFunc,
+    shouldSearch && debouncedSearch
+  );
+  return [isFetching, results, error];
+};
+
+export const QuestionOne = props => {
+  const [search, setSearch] = useState("");
+  const [isFetching, results, error] = useSearch(
+    props.service.getJobsWithSearchTerm,
+    search
+  );
+  return (
+    <SectionGroup>
+      <SectionPanel>
+        <Input
+          label="Job Search"
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+        />
+        {error && (
+          <span>
+            {error.name} - {error.message}
+          </span>
+        )}
+        {isFetching && <span>Fetching... </span>}
+        {results &&
+          results.map(({ id, name, start, end, contact }) => (
             <SearchResult
+              key={id}
+              id={id}
               name={name}
               start={start}
               end={end}
               contactName={contact.name}
             />
           ))}
-        </SectionPanel>
-      </SectionGroup>
-    );
-  }
-}
+      </SectionPanel>
+    </SectionGroup>
+  );
+};

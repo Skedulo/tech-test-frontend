@@ -20,6 +20,7 @@ export const DataService = {
         query: gql`
           query($searchTerm: String) {
             jobs(name: $searchTerm) {
+              id
               name
               start
               end
