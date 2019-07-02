@@ -11,9 +11,10 @@ const server = new ApolloServer({
   playground: true
 });
 
-app.use(function(req, res, next) {
-  setTimeout(next, 1000);
-});
+// Uncomment to see the job search loading state
+// app.use(function(req, res, next) {
+//   setTimeout(next, 1000);
+// });
 
 server.applyMiddleware({ app });
 
