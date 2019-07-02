@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { ThemeProvider } from 'emotion-theming'
+import theme from "./styles/theme";
 
 import { DataService } from './service/DataService'
 import { QuestionOne } from './question-one/QuestionOne'
@@ -59,15 +61,17 @@ class App extends Component {
 
   render() {
     return (
-      <div className="app__container">
-        <header className="app__header">
-          <h1 className="app__title">Skedulo Technical Test</h1>
-          { this.renderTabs() }
-        </header>
-        <div className={ this.state.selectedTab !== AppTabs.Third ? 'app__content' : 'app__content-blank' }>
-          { this.renderContent() }
+      <ThemeProvider theme={theme}>
+        <div className="app__container">
+          <header className="app__header">
+            <h1 className="app__title">Skedulo Technical Test</h1>
+            { this.renderTabs() }
+          </header>
+          <div className={ this.state.selectedTab !== AppTabs.Third ? 'app__content' : 'app__content-blank' }>
+            { this.renderContent() }
+          </div>
         </div>
-      </div>
+      </ThemeProvider>
     )
   }
 }
