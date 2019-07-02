@@ -1,27 +1,9 @@
 import React, { useState, useEffect } from "react";
-
+import JobCard from "../components/JobCard";
 import { SectionGroup } from "../components/section/SectionGroup";
 import { SectionPanel } from "../components/section/SectionPanel";
-
-import "./QuestionOne.css";
-
-const Input = ({ label, ...otherProps }) => (
-  <label>
-    {label}
-    <input {...otherProps} />
-  </label>
-);
-
-const formatDate = dateString => new Date(dateString).toLocaleString();
-
-const SearchResult = ({ name, start, end, contactName }) => (
-  <div style={{ display: "flex", flexDirection: "column" }}>
-    <h2>{name}</h2>
-    <span>{formatDate(start)}</span>
-    <span>{formatDate(end)}</span>
-    <span>{contactName}</span>
-  </div>
-);
+import SearchInput from "../components/SearchInput";
+import { Subtitle } from "../components/Text";
 
 const useDebounce = (value, delay = 200) => {
   const [debouncedValue, setDebouncedValue] = useState(undefined);
@@ -77,6 +59,7 @@ const useFetch = (asyncRequestFunc, arg) => {
   return [isFetching, response, error];
 };
 
+// T0DO: Extract and the this for edge cases
 const isStringOfAtLeast3Chars = str =>
   typeof str === "string" && str.length > 2;
 
@@ -99,20 +82,15 @@ export const QuestionOne = props => {
   return (
     <SectionGroup>
       <SectionPanel>
-        <Input
-          label="Job Search"
+        <SearchInput
           value={search}
-          onChange={e => setSearch(e.target.value)}
+          onChange={setSearch}
+          isLoading={isFetching}
+          error={error}
         />
-        {error && (
-          <span>
-            {error.name} - {error.message}
-          </span>
-        )}
-        {isFetching && <span>Fetching... </span>}
-        {results &&
+        {results ? (
           results.map(({ id, name, start, end, contact }) => (
-            <SearchResult
+            <JobCard
               key={id}
               id={id}
               name={name}
@@ -120,7 +98,10 @@ export const QuestionOne = props => {
               end={end}
               contactName={contact.name}
             />
-          ))}
+          ))
+        ) : (
+          <Subtitle>Sorry, no results...</Subtitle>
+        )}
       </SectionPanel>
     </SectionGroup>
   );
