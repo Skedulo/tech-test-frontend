@@ -1,3 +1,8 @@
+body {
+  -webkit-font-smoothing: antialiased; /* Chrome, Safari */
+  -moz-osx-font-smoothing: grayscale; /* Firefox */
+}
+
 .app__container {
   display: flex;
   height: 100%;
@@ -44,7 +49,7 @@
 }
 
 .app__content-blank {
-  height: calc(100vh - 92px)
+  height: calc(100vh - 92px);
 }
 
 .section__panel {
@@ -54,5 +59,5 @@
 }
 
 .section__panel:last-child {
-  border-bottom-color: transparent
+  border-bottom-color: transparent;
 }
