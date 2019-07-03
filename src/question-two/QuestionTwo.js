@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { SectionGroup } from "../components/section/SectionGroup";
 import { SectionPanel } from "../components/section/SectionPanel";
 import { processDataForSwimlanes } from "./utils/data";
-import "./QuestionTwo.css";
 import { Swimlane } from "../components/swimlane/Swimlane";
 
 /**
