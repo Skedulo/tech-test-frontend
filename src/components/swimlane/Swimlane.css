@@ -37,3 +37,21 @@
   border: 1px solid #d4d7de;
   box-shadow: 0 1px 6px 0 #d4d7de;
 }
+
+.swimlane__card-job:before {
+  content: "";
+  height: 2px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: palevioletred;
+}
+
+.swimlane__card-activity:before {
+  content: "";
+  height: 2px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: paleturquoise;
+}
