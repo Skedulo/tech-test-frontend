@@ -1,5 +1,15 @@
 import styled from "@emotion/styled";
 
+export const Heading = styled.h1(
+  ({ theme }) => `
+  color: ${theme.background.contrast};
+  margin: 0;
+  margin-bottom: 10px;
+  font-size: ${theme.fontSize.h1};
+  font-weight: 300;  
+`
+);
+
 export const Title = styled.h2(
   ({ theme }) => `
   color: ${theme.background.contrast};

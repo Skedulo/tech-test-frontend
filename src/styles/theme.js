@@ -12,7 +12,7 @@ const theme = {
   },
   secondary: {
     main: "#223048",
-    contrast: "#8D8383"
+    contrast: "#C4C4C4"
   },
   error: {
     main: "#ce1126",
