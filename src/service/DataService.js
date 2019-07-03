@@ -39,16 +39,24 @@ export const DataService = {
       .then(data => data.jobs);
   },
 
-  //
-  //  SAMPLE Normal call
-  //
-  // getJobs: () => {
-  //   return axiosClient.get('/jobs')
-  //     .then(result => result.data.map(x => Object.assign({}, x, { id: x.id + '' })))
-  // },
   getJobs: async () => {
     const results = await axiosClient.get("/jobs");
-    console.log(results);
+    return results;
+  },
+  getResources: async () => {
+    const results = await axiosClient.get("/resources");
+    return results;
+  },
+  getActivities: async () => {
+    const results = await axiosClient.get("/activities");
+    return results;
+  },
+  getJobAllocations: async () => {
+    const results = await axiosClient.get("/jobAllocations");
+    return results;
+  },
+  getActivityAllocations: async () => {
+    const results = await axiosClient.get("/activityAllocations");
     return results;
   }
 };

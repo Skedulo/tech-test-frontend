@@ -10,6 +10,7 @@
     "emotion-theming": "^10.0.14",
     "graphql": "^14.0.2",
     "graphql-tag": "^2.9.2",
+    "lodash-es": "^4.17.11",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1"
