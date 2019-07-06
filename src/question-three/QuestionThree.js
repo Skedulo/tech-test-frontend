@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "@emotion/styled";
 import { Heading } from "../components/Text";
 import { JobListCard } from "../components/JobCard";
+import useFetch from "../utils/useFetch";
 
 const SectionHeading = styled(Heading)(
   ({ theme }) => `
@@ -106,85 +107,43 @@ const PlacholderContent = styled.div(
 `
 );
 
-const JOBS = [
-  {
-    id: 0,
-    name: "Build a fence",
-    contactId: "0",
-    start: "2018-09-01T10:00:00Z",
-    end: "2018-09-01T11:00:00Z",
-    location: "Brisbane"
-  },
-  {
-    id: 1,
-    name: "Build a shed",
-    contactId: "1",
-    start: "2018-09-01T10:15:00Z",
-    end: "2018-09-01T11:00:00Z",
-    location: "Brisbane"
-  },
-  {
-    id: 2,
-    name: "Shield some wiring",
-    contactId: "0",
-    start: "2018-09-01T09:00:00Z",
-    end: "2018-09-01T13:00:00Z",
-    location: "Brisbane"
-  },
-  {
-    id: 3,
-    name: "Pick up a trailer",
-    contactId: "0",
-    start: "2018-09-01T13:00:00Z",
-    end: "2018-09-01T13:15:00Z",
-    location: "Brisbane"
-  }
-];
-
-export class QuestionThree extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  render() {
-    return (
-      <SectionGroup>
-        <Sidebar>
-          <IconGroup>
-            <IconPlaceholder />
-            <IconPlaceholder />
-            <IconPlaceholder />
-            <IconPlaceholder />
-          </IconGroup>
-          <IconGroup>
-            <IconPlaceholder />
-          </IconGroup>
-        </Sidebar>
-        <SectionPanel>
-          <Header>
-            <SectionHeading>Header</SectionHeading>
-          </Header>
-          <ContentPanels>
-            <JobsPanel>
-              {JOBS.map(j => (
-                <JobListCard
-                  key={j.id}
-                  {...j}
-                  cardDetail={"Brisbane"}
-                  allocationCount={1}
-                />
+export const QuestionThree = ({ service }) => {
+  // eslint-disable-next-line no-unused-vars
+  const [_isFetching, response, _error] = useFetch(
+    service.getJobsAndAllocations
+  );
+  return (
+    <SectionGroup>
+      <Sidebar>
+        <IconGroup>
+          <IconPlaceholder />
+          <IconPlaceholder />
+          <IconPlaceholder />
+          <IconPlaceholder />
+        </IconGroup>
+        <IconGroup>
+          <IconPlaceholder />
+        </IconGroup>
+      </Sidebar>
+      <SectionPanel>
+        <Header>
+          <SectionHeading>Header</SectionHeading>
+        </Header>
+        <ContentPanels>
+          <JobsPanel>
+            {response &&
+              response.map(j => (
+                <JobListCard key={j.id} {...j} cardDetail={"Brisbane"} />
               ))}
-            </JobsPanel>
-            <PlacholderPanel>
-              <PlacholderContent />
-              <PlacholderContent />
-              <PlacholderContent />
-              <PlacholderContent />
-            </PlacholderPanel>
-          </ContentPanels>
-        </SectionPanel>
-      </SectionGroup>
-    );
-  }
-}
+          </JobsPanel>
+          <PlacholderPanel>
+            <PlacholderContent />
+            <PlacholderContent />
+            <PlacholderContent />
+            <PlacholderContent />
+          </PlacholderPanel>
+        </ContentPanels>
+      </SectionPanel>
+    </SectionGroup>
+  );
+};
