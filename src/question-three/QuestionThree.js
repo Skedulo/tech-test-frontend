@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { Heading } from "../components/Text";
-import { JobListCard } from "../components/JobCard";
+import { JobListCard } from "../components/Cards";
 import useFetch from "../utils/useFetch";
 
 const SectionHeading = styled(Heading)(

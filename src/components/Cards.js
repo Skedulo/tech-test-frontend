@@ -1,8 +1,18 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 import styled from "@emotion/styled";
-import Card from "./Card";
 import { Title, Subtitle, BodySpan } from "./Text";
+
+const Card = styled.div(
+  ({ theme }) => `
+  display: flex;
+  flex-direction: column;
+  border-radius: 2px;
+  background-color: ${theme.background.surface};
+  padding: ${theme.spacing.sm};
+  margin-bottom: ${theme.spacing.sm};
+`
+);
 
 // TODO: Use a library to format dates reliably
 const formatDate = dateString => new Date(dateString).toDateString();
@@ -68,7 +78,7 @@ const JobDate = ({ start, end }) => {
   );
 };
 
-const JobCard = ({ id, name, start, end, cardDetail, className }) => (
+export const JobCard = ({ id, name, start, end, cardDetail, className }) => (
   <Card className={className}>
     <FlexColumn>
       <FlexRow>
@@ -138,5 +148,3 @@ export const JobListCard = ({
     </FlexColumn>
   </ListCard>
 );
-
-export default JobCard;
