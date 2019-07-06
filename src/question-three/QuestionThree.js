@@ -35,7 +35,7 @@ const SectionPanel = styled.div`
   flex-direction: column;
 `;
 
-const ContentPanels = styled.div`
+const Content = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
@@ -51,18 +51,17 @@ const JobsPanel = styled.div(
   `
 );
 
-const PlacholderPanel = styled.div(
+const PlacholderWrapper = styled.div(
   ({ theme }) => `
     background-color: ${theme.background.surface};
     flex: 2.3;
     overflow-y: scroll;
     display: flex;
     flex-direction: column; 
-
 `
 );
 
-const PlacholderContent = styled.div(
+const PlacholderTile = styled.div(
   ({ theme }) => `
     min-height: 250px;
     margin-top: ${theme.spacing.md};
@@ -73,6 +72,15 @@ const PlacholderContent = styled.div(
       margin-bottom: ${theme.spacing.md};
     }
 `
+);
+
+const PlaceholderPanel = () => (
+  <PlacholderWrapper>
+    <PlacholderTile />
+    <PlacholderTile />
+    <PlacholderTile />
+    <PlacholderTile />
+  </PlacholderWrapper>
 );
 
 export const QuestionThree = ({ service }) => {
@@ -87,20 +95,15 @@ export const QuestionThree = ({ service }) => {
         <Header>
           <SectionHeading>Header</SectionHeading>
         </Header>
-        <ContentPanels>
+        <Content>
           <JobsPanel>
             {response &&
               response.map(j => (
                 <JobListCard key={j.id} {...j} cardDetail={"Brisbane"} />
               ))}
           </JobsPanel>
-          <PlacholderPanel>
-            <PlacholderContent />
-            <PlacholderContent />
-            <PlacholderContent />
-            <PlacholderContent />
-          </PlacholderPanel>
-        </ContentPanels>
+          <PlaceholderPanel />
+        </Content>
       </SectionPanel>
     </SectionGroup>
   );
