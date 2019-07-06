@@ -30,10 +30,11 @@ margin-bottom: 0;
 const CardSubtitle = styled(Subtitle)(
   ({ theme }) => `
 margin-bottom: 0;
+flex-shrink: 0;
 `
 );
 
-const CardText = styled(BodySpan)(
+const CardDetail = styled(BodySpan)(
   ({ theme }) => `
   margin-bottom: ${theme.spacing.unit * 2}px;
   color: ${theme.background.contrastMedium};
@@ -56,14 +57,14 @@ const JobDate = ({ start, end }) => {
   );
 };
 
-const JobCard = ({ id, name, start, end, contactName }) => (
-  <Card>
+const JobCard = ({ id, name, start, end, cardDetail, className }) => (
+  <Card className={className}>
     <FlexColumn>
       <FlexRow>
         <CardTitle>{name}</CardTitle>
         <CardSubtitle>(JOB-{id})</CardSubtitle>
       </FlexRow>
-      <CardText>{contactName}</CardText>
+      <CardDetail>{cardDetail}</CardDetail>
       <JobDate start={start} end={end} />
     </FlexColumn>
   </Card>

@@ -96,7 +96,7 @@ export const QuestionOne = props => {
               name={name}
               start={start}
               end={end}
-              contactName={contact.name}
+              cardDetail={contact.name}
             />
           ))
         ) : (
