@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "@emotion/styled";
 import { Heading } from "../components/Text";
+import { JobListCard } from "../components/JobCard";
 
 const SectionHeading = styled(Heading)(
   ({ theme }) => `
@@ -77,6 +78,7 @@ const JobsPanel = styled.div(
   flex: 1;
   overflow-y: scroll;
   min-width: 250px;
+  padding: ${theme.spacing.md};
   `
 );
 
@@ -104,6 +106,41 @@ const PlacholderContent = styled.div(
 `
 );
 
+const JOBS = [
+  {
+    id: 0,
+    name: "Build a fence",
+    contactId: "0",
+    start: "2018-09-01T10:00:00Z",
+    end: "2018-09-01T11:00:00Z",
+    location: "Brisbane"
+  },
+  {
+    id: 1,
+    name: "Build a shed",
+    contactId: "1",
+    start: "2018-09-01T10:15:00Z",
+    end: "2018-09-01T11:00:00Z",
+    location: "Brisbane"
+  },
+  {
+    id: 2,
+    name: "Shield some wiring",
+    contactId: "0",
+    start: "2018-09-01T09:00:00Z",
+    end: "2018-09-01T13:00:00Z",
+    location: "Brisbane"
+  },
+  {
+    id: 3,
+    name: "Pick up a trailer",
+    contactId: "0",
+    start: "2018-09-01T13:00:00Z",
+    end: "2018-09-01T13:15:00Z",
+    location: "Brisbane"
+  }
+];
+
 export class QuestionThree extends Component {
   constructor(props) {
     super(props);
@@ -129,7 +166,16 @@ export class QuestionThree extends Component {
             <SectionHeading>Header</SectionHeading>
           </Header>
           <ContentPanels>
-            <JobsPanel />
+            <JobsPanel>
+              {JOBS.map(j => (
+                <JobListCard
+                  key={j.id}
+                  {...j}
+                  cardDetail={"Brisbane"}
+                  allocationCount={1}
+                />
+              ))}
+            </JobsPanel>
             <PlacholderPanel>
               <PlacholderContent />
               <PlacholderContent />

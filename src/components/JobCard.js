@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx } from "@emotion/core";
+import { jsx, css } from "@emotion/core";
 import styled from "@emotion/styled";
 import Card from "./Card";
 import { Title, Subtitle, BodySpan } from "./Text";
@@ -68,6 +68,64 @@ const JobCard = ({ id, name, start, end, cardDetail, className }) => (
       <JobDate start={start} end={end} />
     </FlexColumn>
   </Card>
+);
+
+const ListCard = styled(Card)(
+  ({ theme }) => `
+  padding: ${theme.spacing.md};
+  margin-bottom: ${theme.spacing.md};
+`
+);
+
+const CircleBadgeWrapper = styled.div(
+  ({ theme }) => `
+    box-sizing: border-box;
+    height: ${theme.spacing.unit * 4.5}px;
+    width: ${theme.spacing.unit * 4.5}px;
+    border-radius: ${theme.spacing.unit * 2.25}px;
+    border: 1px solid ${theme.primary.main};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+);
+
+const BadgeText = styled(BodySpan)(
+  ({ theme }) => `
+    color: ${theme.primary.main};
+    font-weight: bold;
+`
+);
+
+const CircleBadge = ({ text }) => (
+  <CircleBadgeWrapper>
+    <BadgeText>{text}</BadgeText>
+  </CircleBadgeWrapper>
+);
+
+export const JobListCard = ({
+  id,
+  name,
+  start,
+  end,
+  cardDetail,
+  className,
+  allocationCount
+}) => (
+  <ListCard className={className}>
+    <FlexColumn>
+      <FlexRow>
+        <CardTitle>{name}</CardTitle>
+        <CardSubtitle>(JOB-{id})</CardSubtitle>
+      </FlexRow>
+      <CardDetail>{cardDetail}</CardDetail>
+      <FlexRow
+        css={css({ justifyContent: "space-between", alignItems: "center" })}>
+        <JobDate start={start} end={end} />
+        {allocationCount > 0 && <CircleBadge text={allocationCount} />}
+      </FlexRow>
+    </FlexColumn>
+  </ListCard>
 );
 
 export default JobCard;
