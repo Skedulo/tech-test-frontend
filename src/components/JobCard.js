@@ -6,7 +6,12 @@ import { Title, Subtitle, BodySpan } from "./Text";
 
 // TODO: Use a library to format dates reliably
 const formatDate = dateString => new Date(dateString).toDateString();
-const formatTime = dateString => new Date(dateString).toLocaleTimeString();
+const formatTime = dateString =>
+  new Date(dateString).toLocaleTimeString("en-AU", {
+    hour12: false,
+    hour: "2-digit",
+    minute: "2-digit"
+  });
 
 const FlexColumn = styled.div`
   display: flex;
@@ -46,13 +51,19 @@ const DateText = styled(BodySpan)(
   color: ${theme.background.contrastMedium};
 `
 );
+const TimeText = styled(BodySpan)(
+  ({ theme }) => `
+  color: ${theme.background.contrastMedium};
+  font-weight: bold;
+`
+);
 
 // TODO: Handle jobs that start and finish on different days
 const JobDate = ({ start, end }) => {
   return (
     <FlexColumn>
       <DateText>{formatDate(start)}</DateText>
-      <DateText>{`${formatTime(start)} - ${formatTime(end)}`}</DateText>
+      <TimeText>{`${formatTime(start)} - ${formatTime(end)}`}</TimeText>
     </FlexColumn>
   );
 };
