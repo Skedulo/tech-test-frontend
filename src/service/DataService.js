@@ -2,6 +2,7 @@ import ApolloClient from "apollo-boost";
 import gql from "graphql-tag";
 import Axios from "axios";
 import countJobAllocations from "./utils/countJobAllocations";
+import processDataForSwimlanes from "./utils/processDataForSwimlanes";
 
 const graphClient = new ApolloClient({
   uri: "http://localhost:3500/graphql"
@@ -61,23 +62,48 @@ export const DataService = {
     return countJobAllocations(data);
   },
   getJobs: async () => {
-    const results = await axiosClient.get("/jobs");
-    return results;
+    const { data: jobs } = await axiosClient.get("/jobs");
+    return jobs;
   },
   getResources: async () => {
-    const results = await axiosClient.get("/resources");
-    return results;
+    const { data: resources } = await axiosClient.get("/resources");
+    return resources;
   },
   getActivities: async () => {
-    const results = await axiosClient.get("/activities");
-    return results;
+    const { data: activities } = await axiosClient.get("/activities");
+    return activities;
   },
   getJobAllocations: async () => {
-    const results = await axiosClient.get("/jobAllocations");
-    return results;
+    const { data: jobAllocations } = await axiosClient.get("/jobAllocations");
+    return jobAllocations;
   },
   getActivityAllocations: async () => {
-    const results = await axiosClient.get("/activityAllocations");
-    return results;
+    const { data: activityAllocations } = await axiosClient.get(
+      "/activityAllocations"
+    );
+    return activityAllocations;
+  },
+  getSwimlaneData: async function() {
+    const [
+      jobs,
+      resources,
+      activities,
+      jobAllocations,
+      activityAllocations
+    ] = await Promise.all([
+      this.getJobs(),
+      this.getResources(),
+      this.getActivities(),
+      this.getJobAllocations(),
+      this.getActivityAllocations()
+    ]);
+
+    return processDataForSwimlanes({
+      jobs,
+      resources,
+      activities,
+      jobAllocations,
+      activityAllocations
+    });
   }
 };

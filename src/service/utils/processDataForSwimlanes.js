@@ -1,5 +1,4 @@
 import { groupBy, keyBy } from "lodash-es";
-import { toJobCard, toActivityCard } from "./toCard";
 
 const resolveJobAllocations = ({
   resourceId,
@@ -38,23 +37,24 @@ const processDataForSwimlanes = ({
   const activitiesById = keyBy(activities, "id");
 
   const lanes = resources.map(resource => {
-    const jobCards = resolveJobAllocations({
+    const resourcesJobs = resolveJobAllocations({
       resourceId: resource.id,
       jobAllocationsByResourceId,
       jobsById
-    }).map(toJobCard);
-    const activityCards = resolveActivityAllocation({
+    });
+    const resourcesActivities = resolveActivityAllocation({
       resourceId: resource.id,
       activityAllocationsByResourceId,
       activitiesById
-    }).map(toActivityCard);
+    });
     return {
-      title: resource.name,
-      cards: [...jobCards, ...activityCards]
+      ...resource,
+      jobs: resourcesJobs,
+      activities: resourcesActivities
     };
   });
 
   return lanes;
 };
 
-export { processDataForSwimlanes };
+export default processDataForSwimlanes;

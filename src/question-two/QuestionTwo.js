@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { SectionGroup } from "../components/section/SectionGroup";
 import { SectionPanel } from "../components/section/SectionPanel";
-import { processDataForSwimlanes } from "./utils/data";
 import { Swimlane } from "../components/swimlane/Swimlane";
-
+import { formatJobToCard, formatActivityToCard } from "./utils/formatToCard";
 /**
- * Please do not change these dates, the data on the server all fall within the 01/09/2018
+ * Please do not change these dates, the data on thimport { toJobCard } from "./utils/toCard";
+e server all fall within the 01/09/2018
  */
 const RANGE_START = new Date("2018-09-01T00:00:00Z");
 const RANGE_END = new Date("2018-09-01T24:00:00Z");
@@ -25,22 +25,15 @@ export class QuestionTwo extends Component {
 
   async fetchData() {
     try {
-      const { data: resources } = await this.props.service.getResources();
-      const { data: jobs } = await this.props.service.getJobs();
-      const { data: activities } = await this.props.service.getActivities();
-      const {
-        data: activityAllocations
-      } = await this.props.service.getActivityAllocations();
-      const {
-        data: jobAllocations
-      } = await this.props.service.getJobAllocations();
-
-      const lanes = processDataForSwimlanes({
-        resources,
-        jobs,
-        activities,
-        activityAllocations,
-        jobAllocations
+      const swimlaneData = await this.props.service.getSwimlaneData();
+      const lanes = swimlaneData.map(lane => {
+        return {
+          title: lane.name,
+          cards: [
+            ...lane.jobs.map(formatJobToCard),
+            ...lane.activities.map(formatActivityToCard)
+          ]
+        };
       });
       this.setState({ lanes });
     } catch (err) {
