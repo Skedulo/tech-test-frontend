@@ -37,10 +37,12 @@ const SearchInput = ({ value, onChange, isLoading, error, ...otherProps }) => {
   return (
     <SearchInputWrapper>
       <TextInput
-        label={<SearchIcon />}
+        icon={<SearchIcon />}
         value={value}
         onChange={onSearchChange}
         error={error}
+        aria-label="search"
+        name="search"
         {...otherProps}
       />
       <LoadingStripe isLoading={isLoading} />
