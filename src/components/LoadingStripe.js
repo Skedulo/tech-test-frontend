@@ -45,6 +45,9 @@ const LoadingStripe = ({ isLoading }) => (
       ${base};
       ${isLoading && animation};
     `}
+    data-testid={
+      isLoading ? "loading-strip-is-loading" : "loading-strip-is-done"
+    }
     aria-hidden="true"
   />
 );

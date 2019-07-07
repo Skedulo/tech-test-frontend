@@ -24,14 +24,14 @@ const Input = styled.input(
   `
 );
 
-const Label = styled.label`
+const IconWrapper = styled.label`
   display: flex;
   align-items: center;
 `;
 
-const TextInput = ({ label, name, ...otherProps }) => (
+const TextInput = ({ icon, name, ...otherProps }) => (
   <InputWrapper>
-    <Label htmlFor={name}>{label}</Label>
+    <IconWrapper>{icon}</IconWrapper>
     <Input id={name} name={name} {...otherProps} />
   </InputWrapper>
 );
