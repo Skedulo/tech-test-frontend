@@ -1,4 +1,4 @@
-import { groupBy } from "lodash-es";
+import groupBy from "lodash/groupBy";
 
 const countJobAllocations = ({ jobs, jobAllocations }) => {
   const jobAllocationsByJobId = groupBy(jobAllocations, "job.id");

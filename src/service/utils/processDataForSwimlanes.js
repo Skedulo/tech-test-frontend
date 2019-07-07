@@ -1,4 +1,5 @@
-import { groupBy, keyBy } from "lodash-es";
+import groupBy from "lodash/groupBy";
+import keyBy from "lodash/keyBy";
 
 const resolveJobAllocations = ({
   resourceId,
