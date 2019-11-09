@@ -4,7 +4,7 @@ import './Swimlane.css'
 
 export const Swimlane = props => (
   <div className={ 'swimlane__container' }>
-    { props.lanes.map(lane => (<Lane title={ lane.title } start={ props.start } end={ props.end } cards={ lane.cards } />)) }
+    { props.lanes.map(lane => (<Lane key={lane.key} title={ lane.title } start={ props.start } end={ props.end } cards={ lane.cards } />)) }
   </div>
 )
 

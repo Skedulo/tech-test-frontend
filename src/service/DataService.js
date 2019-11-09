@@ -36,9 +36,65 @@ export const DataService = {
       .then(data => data.jobs)
   },
 
-  getJobs: () => {
-    return axiosClient.get('/jobs')
-      .then(result => result.data.map(x => Object.assign({}, x, { id: x.id + '' })))
+  getResources: () => {
+    return graphClient.query({
+      query: gql`
+      query {
+        resources {
+          id,
+          name
+        }
+      }
+      `
+    })
+      .then(result => result.data)
+      .then(data => data.resources)
+  },
+
+  getJobAllocations: () => {
+    return graphClient.query({
+      query: gql`
+      query {
+        jobAllocations {
+          id,
+          resource {
+            id
+          }
+          job {
+            id,
+            name,
+            start,
+            end
+          }
+        }
+      }
+      `
+    })
+      .then(result => result.data)
+      .then(data => data.jobAllocations)
+  },
+
+  getActivityAllocations: () => {
+    return graphClient.query({
+      query: gql`
+      query {
+        activityAllocations {
+          id,
+          resource {
+            id
+          }
+          activity {
+            id,
+            name,
+            start,
+            end
+          }
+        }
+      }
+      `
+    })
+      .then(result => result.data)
+      .then(data => data.activityAllocations)
   },
   
 }
