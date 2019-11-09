@@ -7,9 +7,10 @@
     "axios": "^0.18.0",
     "graphql": "^14.0.2",
     "graphql-tag": "^2.9.2",
-    "react": "^16.5.0",
-    "react-dom": "^16.5.0",
-    "react-scripts": "1.1.5"
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-scripts": "1.1.5",
+    "rxjs": "^6.5.3"
   },
   "scripts": {
     "bootstrap": "npm install && npm run server:bootstrap",
@@ -19,5 +20,9 @@
     "eject": "react-scripts eject",
     "server:bootstrap": "cd ./src/server && npm install",
     "server:start": "cd ./src/server && npm run dev"
+  },
+  "devDependencies": {
+    "@testing-library/react-hooks": "^3.2.1",
+    "react-test-renderer": "^16.11.0"
   }
 }
