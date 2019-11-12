@@ -44,7 +44,8 @@
 }
 
 .app__content-blank {
-  height: calc(100vh - 92px)
+  height: calc(100vh - 92px);
+  flex: 1;
 }
 
 .section__panel {
