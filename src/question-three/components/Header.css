@@ -1,0 +1,6 @@
+.header {
+    background: var(--primary);
+    padding: var(--spacing--xl) var(--spacing--xs) ;
+    font-size: var(--font-size--xl);
+    color: var(--white);
+}

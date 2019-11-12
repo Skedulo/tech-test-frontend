@@ -1,0 +1,25 @@
+@import './variables.css';
+
+.q3__container {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template:
+        [row1-start] "sidebar header header" auto [row1-end]
+        [row2-start] "sidebar jobs fake" minmax(0, 1fr) [row2-end]
+          / auto auto 1fr;
+}
+.q3__header {
+    grid-area: header;
+}
+.q3__sidebar {
+    grid-area: sidebar;
+}
+
+.q3__jobs {
+    grid-area: jobs;
+}
+
+.q3__fake {
+    grid-area: fake;
+}

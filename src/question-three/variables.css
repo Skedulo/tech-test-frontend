@@ -1,0 +1,20 @@
+:root { 
+    --white: #fff;
+    --black: #000;
+    --darkBlue: #223048;
+    --primary: #3d9bff;
+    --gray: #c4c4c4;
+    --darkerGray: #8d8383;
+    --lighterGray: #e4eef1;
+
+    --spacing: 1rem;
+    --spacing--xs: calc(var(--spacing) * 0.5);
+    --spacing--xl: calc(var(--spacing) * 1.5);
+    
+
+    --font-size: 1rem;
+    --font-size--xs: calc(var(--font-size) * 0.75);
+    --font-size--s: calc(var(--font-size) * 0.8725);
+    --font-size--l: calc(var(--font-size) * 1.25);
+    --font-size--xl: calc(var(--font-size) * 1.5);
+}

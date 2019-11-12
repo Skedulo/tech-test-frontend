@@ -1,23 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import { SectionGroup } from '../components/section/SectionGroup'
-import { SectionPanel } from '../components/section/SectionPanel'
+import Header from './components/Header'
+import Sidebar from './components/Sidebar'
 
 import './QuestionThree.css'
+import JobList from './components/JobList';
+import RightHandSide from './components/RightHandSide';
 
-export class QuestionThree extends Component {
-  constructor(props) {
-    super(props)
-    this.state = { }
-  }
-
-  render() {
-    return (
-      <SectionGroup>
-        <SectionPanel>
-          Please refer to INSTRUCTIONS.md
-        </SectionPanel>
-      </SectionGroup>
-    )
-  }
+export const QuestionThree = ({service}) => {
+  return (
+    <div className="q3__container">
+      <Header className="q3__header"/>
+      <Sidebar className="q3__sidebar" />
+      <JobList className="q3__jobs" service={service}/>
+      <RightHandSide className="q3__fake" />
+    </div>
+  )
 }

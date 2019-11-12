@@ -13,6 +13,8 @@ export const typeDefs = gql`
     id: ID
     name: String
     contact: Contact
+    location: String
+    jobAllocations: [JobAllocation]
     start: String
     end: String
   }
@@ -87,6 +89,10 @@ export const resolvers = {
   Job: {
     contact(source) {
       return contactModel.find(source.contactId)
+    },
+    jobAllocations(source) {
+      return jobAllocationModel.list()
+        .then(results => results.filter(x => x.jobId === source.id))
     }
   },
   JobAllocation: {

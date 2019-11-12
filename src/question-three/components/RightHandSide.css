@@ -1,0 +1,20 @@
+.rightHandSide {
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: 1fr;
+    align-content: start;
+    grid-gap: var(--spacing);
+    padding: var(--spacing);
+    overflow: auto;
+    background: var(--white);
+}
+
+.rightHandSide__fakeChild {
+    background: var(--lighterGray);
+    height: 200px;
+}
+
+.rightHandSide__trigger {
+    background: var(--primary);
+    margin-bottom: var(--spacing);
+}

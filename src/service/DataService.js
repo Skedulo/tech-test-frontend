@@ -21,9 +21,13 @@ export const DataService = {
           name,
           start,
           end,
+          location,
           contact {
             id
             name
+          }
+          jobAllocations {
+            id
           }
         }
       }

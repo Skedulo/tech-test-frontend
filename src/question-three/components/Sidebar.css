@@ -1,0 +1,20 @@
+.sidebar {
+    --sidebar-item-size: 2rem;
+    display: grid;
+    grid-gap: var(--spacing--xs);
+    padding: var(--spacing--xs);
+    background: var(--darkBlue);
+    grid-template-rows: repeat(auto-fit, var(--sidebar-item-size)) minmax(0, 1fr);
+    align-content: start;
+}
+
+.sidebar__item {
+    width: var(--sidebar-item-size);
+    height: var(--sidebar-item-size);
+    background: var(--gray);
+    border-radius: 100%;
+}
+
+.sidebar__item:last-child {
+  grid-row-start: -1;
+}

@@ -1,0 +1,58 @@
+.jobCard {
+    --sidebar-item-size: 2rem;
+    background: var(--white);
+    padding: var(--spacing--xs);
+    display: grid;
+    grid-template:
+        [row1-start] "title title" auto [row1-end]
+        [row2-start] "location location" auto [row2-end]
+        [row2-start] "datetime allocationCounter" auto [row2-end]
+          / 1fr auto;
+}
+
+.jobCard__title {
+    grid-area: title;
+}
+
+.jobCard__title__id {
+    color: var(--gray);
+    font-size: var(--font-size--s);
+}
+
+.jobCard__location  {
+    grid-area: location;
+    color: var(--gray);
+    font-size: var(--font-size--xs);
+}
+
+.jobCard__datetime  {
+    grid-area: datetime;
+    font-size: var(--font-size--xs);
+    display: grid;
+    grid-auto-flow: row;
+    align-content: end;
+}
+
+.jobCard__datetime__date  {
+    color: var(--gray);
+}
+.jobCard__datetime__time  {
+    color: var(--darkerGray);
+}
+
+.jobCard__allocationCounter {
+    grid-area: allocationCounter;
+    border-radius: 100%;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    width: var(--sidebar-item-size);
+    height: var(--sidebar-item-size);
+    display: grid;
+    justify-content: center;
+    align-content: center;
+}
+
+
+.jobCard__allocationCounter--hidden {
+    visibility: hidden;
+}
