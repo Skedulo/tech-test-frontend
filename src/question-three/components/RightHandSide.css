@@ -16,5 +16,6 @@
 
 .rightHandSide__trigger {
     background: var(--primary);
+    /*margin will help with intersection observer, make the element fully in viewport*/
     margin-bottom: var(--spacing);
 }

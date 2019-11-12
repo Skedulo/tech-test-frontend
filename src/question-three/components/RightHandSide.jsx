@@ -9,7 +9,6 @@ let useFakeInfiniteLoad = (triggerRef) => {
 
     useEffect(() => {
         let options = {
-            root: null,
             threshold: 1.0
         }
         let callback = (entries) => { 
