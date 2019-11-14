@@ -1,0 +1,13 @@
+
+> tech-test@0.1.0 start /home/chima/work/tech-test-frontend
+> react-scripts start & npm run server:start
+
+
+> tech-test@0.1.0 server:start /home/chima/work/tech-test-frontend
+> cd ./src/server && npm run dev
+
+
+> social-graphql@1.0.0 dev /home/chima/work/tech-test-frontend/src/server
+> npm-run-all --parallel dev:*
+
+Something is already running on port 3000.

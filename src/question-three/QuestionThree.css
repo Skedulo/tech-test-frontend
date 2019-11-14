@@ -7,7 +7,7 @@
     grid-template:
         [row1-start] "sidebar header header" auto [row1-end]
         [row2-start] "sidebar jobs fake" minmax(0, 1fr) [row2-end]
-          / auto auto 1fr;
+          / auto 500px 1fr;
 }
 .q3__header {
     grid-area: header;

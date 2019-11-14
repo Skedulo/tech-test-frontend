@@ -1,5 +1,8 @@
 import { useReducer, useEffect } from "react";
 
+import {from, merge} from 'rxjs';
+import {map} from 'rxjs/operators';
+
 const initialState = {
   resources: [],
   jobAllocations: {},
@@ -42,26 +45,27 @@ export default service => {
   const [{resources, activityAllocations, jobAllocations, loadingCounter}, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    Promise.all([
-      service.getResources().then(resources =>
-        dispatch({
+    let subscription = merge(
+      from(service.getResources()).pipe(
+        map(resources => ({
           type: "updateResources",
-          payload: resources
-        })
+          payload: resources}))
       ),
-      service.getJobAllocations().then(jobAllocations =>
-        dispatch({
+      from(service.getJobAllocations()).pipe(
+        map(jobAllocations => ({
           type: "updateJobAllocations",
-          payload: jobAllocations
-        })
+          payload: jobAllocations}))
       ),
-      service.getActivityAllocations().then(activityAllocations =>
-        dispatch({
+      from(service.getActivityAllocations()).pipe(
+        map(activityAllocations => ({
           type: "updateActivityAllocations",
-          payload: activityAllocations
-        })
-      )
-    ]);
+          payload: activityAllocations}))
+      ),
+    ).subscribe(dispatch)
+
+    return () => {
+      subscription.unsubscribe();
+    }
   }, []);
 
   let swimelane = resources.map((resource) => ({
