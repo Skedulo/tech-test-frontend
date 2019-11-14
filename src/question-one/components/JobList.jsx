@@ -1,6 +1,6 @@
 import React from 'react';
 
-import useLoadJobs from './useLoadJobs';
+import useLoadJobs from '../hooks/useLoadJobs';
 
 import JobItem from './JobItem'
 

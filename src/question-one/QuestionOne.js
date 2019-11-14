@@ -4,10 +4,10 @@ import { SectionGroup } from '../components/section/SectionGroup'
 import { SectionPanel } from '../components/section/SectionPanel'
 
 import './QuestionOne.css'
-import useCreateInputStream from '../hooks/useCreateInputStream';
+import useCreateInputStream from './hooks/useCreateInputStream';
 
-import SearchBox from './SearchBox';
-import JobList from './JobList';
+import SearchBox from './components/SearchBox';
+import JobList from './components/JobList';
 
 const QuestionOne = ({service}) => {
   let [searchString$, onChange] = useCreateInputStream();
