@@ -85,5 +85,5 @@ export default service => {
     ]
   }))
 
-  return {swimelane, isLoading: !loadingCounter};
+  return {swimelane, isLoading: !!loadingCounter};
 };

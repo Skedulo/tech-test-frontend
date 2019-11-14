@@ -17,7 +17,7 @@ describe("useLoadSwimelane", () => {
 
     const { result } = renderHook(() => useLoadSwimelane(services));
 
-    expect(result.current.isLoading).toBe(false);
+    expect(result.current.isLoading).toBe(true);
     expect(result.current.swimelane).toEqual([]);
     const mockResources = [{
       id: 'id',
@@ -27,7 +27,7 @@ describe("useLoadSwimelane", () => {
       $resources.next(mockResources)
     })
 
-    expect(result.current.isLoading).toBe(false);
+    expect(result.current.isLoading).toBe(true);
     expect(result.current.swimelane).toEqual([{
       key: 'id',
       title: 'name',
@@ -48,7 +48,7 @@ describe("useLoadSwimelane", () => {
       $jobAllocations.next(mockJobAllocations)
     })
 
-    expect(result.current.isLoading).toBe(false);
+    expect(result.current.isLoading).toBe(true);
     expect(result.current.swimelane).toEqual([{
       key: 'id',
       title: 'name',
@@ -74,7 +74,7 @@ describe("useLoadSwimelane", () => {
       $activityAllocations.next(mockActivityllocations)
     })
 
-    expect(result.current.isLoading).toBe(true);
+    expect(result.current.isLoading).toBe(false);
     expect(result.current.swimelane).toEqual([{
       key: 'id',
       title: 'name',
