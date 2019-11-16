@@ -13,8 +13,6 @@ import { Swimlane } from "../components/swimlane/Swimlane";
 const RANGE_START = new Date("2018-09-01T00:00:00Z");
 const RANGE_END = new Date("2018-09-01T24:00:00Z");
 
-
-
 export const QuestionTwo = ({ service }) => {
 
   let {swimelane, isLoading} = useLoadSwimelane(service);
@@ -22,7 +20,7 @@ export const QuestionTwo = ({ service }) => {
   return (
     <SectionGroup>
       <SectionPanel>
-        <Swimlane lanes={swimelane} start={RANGE_START} end={RANGE_END} />
+        {isLoading ? 'loading' : <Swimlane lanes={swimelane} start={RANGE_START} end={RANGE_END} />}
       </SectionPanel>
     </SectionGroup>
   );

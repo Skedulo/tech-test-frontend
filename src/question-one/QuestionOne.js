@@ -21,7 +21,7 @@ const QuestionOne = ({service}) => {
           <JobList searchString$={searchString$} service={service} />
         </div>
       </SectionPanel>
-    </SectionGroup>
+  </SectionGroup>
   )
 }
 

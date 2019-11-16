@@ -22,7 +22,8 @@
     "server:start": "cd ./src/server && npm run dev"
   },
   "devDependencies": {
+    "@testing-library/react": "^9.3.2",
     "@testing-library/react-hooks": "^3.2.1",
-    "react-test-renderer": "^16.11.0"
+    "react-test-renderer": "^16.12.0"
   }
 }

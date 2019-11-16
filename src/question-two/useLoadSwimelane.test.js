@@ -5,7 +5,7 @@ import {Subject} from 'rxjs';
 import useLoadSwimelane from "./useLoadSwimelane";
 
 describe("useLoadSwimelane", () => {
-  it("should wait for resources response to get swimelane data", () => {
+  it("should wait for resources response to return swimelane data", () => {
     let $resources = new Subject();
     let $jobAllocations = new Subject();
     let $activityAllocations = new Subject();

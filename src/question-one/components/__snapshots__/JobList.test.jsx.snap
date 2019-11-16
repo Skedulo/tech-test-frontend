@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`JobList should render matchSnapshot when useLoadJobs return array jobs 1`] = `
+Array [
+  "<JobItem/>",
+  "<JobItem/>",
+]
+`;
