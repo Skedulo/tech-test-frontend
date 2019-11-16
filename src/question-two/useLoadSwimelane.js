@@ -82,11 +82,13 @@ export default service => {
     title: resource.name,
     cards: [
       ...(activityAllocations[resource.id] || []).map(({ activity }) => ({
+        key: activity.id,
         description: `Activity ${activity.name}`,
         start: new Date(activity.start),
         end: new Date(activity.end)
       })),
       ...(jobAllocations[resource.id] || []).map(({ job }) => ({
+        key: job.id,
         description: `Job ${job.name}`,
         start: new Date(job.start),
         end: new Date(job.end)

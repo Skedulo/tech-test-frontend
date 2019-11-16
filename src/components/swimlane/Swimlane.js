@@ -23,7 +23,7 @@ export const LaneTitle = props => (
 
 export const LaneDetail = props => (
   <div className={ 'swimlane__detail' }>
-    { props.cards.map(card => (<Card laneStart={ props.start } laneEnd={ props.end } className={ card.className } style={ card.style } description={ card.description } start={ card.start } end={ card.end } />)) }
+    { props.cards.map(card => (<Card key={card.key} laneStart={ props.start } laneEnd={ props.end } className={ card.className } style={ card.style } description={ card.description } start={ card.start } end={ card.end } />)) }
   </div>
 )
 
