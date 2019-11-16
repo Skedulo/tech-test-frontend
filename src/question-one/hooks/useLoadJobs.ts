@@ -1,26 +1,44 @@
 import { useReducer, useEffect } from 'react'
-import { partition, merge, from, of } from 'rxjs'
+import { partition, merge, from, of, Subscribable, ObservableInput } from 'rxjs'
 import { mergeMap, switchMap, delay, startWith, map, takeUntil, distinctUntilChanged } from 'rxjs/operators'
+import {Job} from '../../types/Job'
 
-const initialState = {
+interface State {
+  jobs: Job[],
+  isLoading: Boolean,
+  isInitial: Boolean
+}
+
+const initialState: State = {
   jobs: [],
   isLoading: false,
   isInitial: true
 }
 
-function reducer (state, action) {
+enum Type {
+  RESET_STATE= 'resetState',
+  START_LOADING= 'startLoading',
+  UPDATE_JOBS='updateJobs'
+}
+
+type Action = {
+  type: Type
+  payload?: Job[]
+}
+
+function reducer (state: State, action: Action): State {
   switch (action.type) {
-    case 'resetState':
+    case Type.RESET_STATE:
       return initialState
-    case 'startLoading':
+    case Type.START_LOADING:
       return {
         ...state,
         isLoading: true,
         isInitial: false
       }
-    case 'updateJobs':
+    case Type.UPDATE_JOBS:
       return {
-        jobs: action.payload,
+        jobs: action.payload || [],
         isLoading: false,
         isInitial: false
       }
@@ -29,7 +47,7 @@ function reducer (state, action) {
   }
 }
 
-export default (searchString$, searchFn) => {
+export default (searchString$: Subscribable<string>, searchFn: (searchStr: string) => ObservableInput<Job[]> ) => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   useEffect(() => {
@@ -38,7 +56,7 @@ export default (searchString$, searchFn) => {
     const subscription = merge(
       skipSearch$.pipe(
         map(() => ({
-          type: 'resetState'
+          type: Type.RESET_STATE
         }))
       ),
       canSearch$.pipe(
@@ -50,13 +68,13 @@ export default (searchString$, searchFn) => {
               () => from(searchFn(val))
                 .pipe(
                   map(payload => ({
-                    type: 'updateJobs',
+                    type: Type.UPDATE_JOBS,
                     payload
                   }))
                 )
             ),
             startWith(({
-              type: 'startLoading'
+              type: Type.START_LOADING
             })),
             takeUntil(skipSearch$)
           )

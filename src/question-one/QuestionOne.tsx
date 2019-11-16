@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import { SectionGroup } from '../components/section/SectionGroup'
 import { SectionPanel } from '../components/section/SectionPanel'
@@ -9,8 +8,13 @@ import useCreateInputStream from './hooks/useCreateInputStream'
 
 import SearchBox from './components/SearchBox'
 import JobList from './components/JobList'
+import { IJobService } from '../service/DataService'
 
-const QuestionOne = ({ service }) => {
+type QuestionOneProps = {
+  service: IJobService;
+}
+
+const QuestionOne: React.FC<QuestionOneProps> = ({ service }) => {
   const [searchString$, onChange] = useCreateInputStream()
   return (
     <SectionGroup>
@@ -24,12 +28,6 @@ const QuestionOne = ({ service }) => {
       </SectionPanel>
     </SectionGroup>
   )
-}
-
-QuestionOne.propTypes = {
-  service: PropTypes.shape({
-    getJobsWithSearchTerm: PropTypes.func
-  })
 }
 
 export { QuestionOne }

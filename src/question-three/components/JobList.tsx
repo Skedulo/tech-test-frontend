@@ -1,18 +1,24 @@
 import React, { useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
 
 import JobCard from './JobCard'
 import { from } from 'rxjs'
 
 import './JobList.css'
+import { IJobService } from '../../service/DataService'
+import { Job } from '../../types/Job'
+
+interface State {
+  jobs : Job[],
+  isLoading: Boolean
+}
 
 const INITIAL_STATE = {
   jobs: [],
   isLoading: true
 }
 
-const useLoadJobs = (searchFn) => {
-  const [state, updateState] = useState(INITIAL_STATE)
+const useLoadJobs = (searchFn: IJobService["getJobsWithSearchTerm"]) => {
+  const [state, updateState] = useState<State>(INITIAL_STATE)
 
   useEffect(() => {
     const subscription = from(searchFn())
@@ -20,7 +26,7 @@ const useLoadJobs = (searchFn) => {
         updateState({
           jobs,
           isLoading: false
-        })
+      })
       })
 
     return () => {
@@ -31,7 +37,7 @@ const useLoadJobs = (searchFn) => {
   return state
 }
 
-const JobList = ({ service, className }) => {
+const JobList : React.FC<{service: IJobService, className: string}> = ({ service, className }) => {
   const { jobs, isLoading } = useLoadJobs(service.getJobsWithSearchTerm)
 
   return (
@@ -43,11 +49,5 @@ const JobList = ({ service, className }) => {
   )
 }
 
-JobList.propTypes = {
-  service: PropTypes.shape({
-    getJobsWithSearchTerm: PropTypes.func.isRequired
-  }),
-  className: PropTypes.string
-}
 
 export default JobList

@@ -3,13 +3,17 @@ import { renderHook, act } from '@testing-library/react-hooks'
 import { Subject } from 'rxjs'
 
 import useLoadSwimelane from './useLoadSwimelane'
+import { Resource } from '../types/Resource'
+import { JobAllocation } from '../types/JobAllocation'
+import { ActivityAllocation } from '../types/ActivityAllocation'
+import { ISwimeLaneService } from '../service/DataService'
 
 describe('useLoadSwimelane', () => {
   it('should wait for resources response to return swimelane data', () => {
-    const $resources = new Subject()
-    const $jobAllocations = new Subject()
-    const $activityAllocations = new Subject()
-    const services = {
+    const $resources = new Subject<Resource[]>()
+    const $jobAllocations = new Subject<JobAllocation[]>()
+    const $activityAllocations = new Subject<ActivityAllocation[]>()
+    const services: ISwimeLaneService = {
       getResources: jest.fn(() => $resources),
       getJobAllocations: jest.fn(() => $jobAllocations),
       getActivityAllocations: jest.fn(() => $activityAllocations)
@@ -33,15 +37,17 @@ describe('useLoadSwimelane', () => {
       title: 'name',
       cards: []
     }])
+
     const currentDate = new Date()
+    const currentDateString= currentDate.toISOString()
     const mockJobAllocations = [{
       resource: {
         id: 'id'
       },
       job: {
         name: 'test job',
-        start: currentDate,
-        end: currentDate
+        start: currentDateString,
+        end: currentDateString
       }
     }]
     act(() => {
@@ -65,8 +71,8 @@ describe('useLoadSwimelane', () => {
       },
       activity: {
         name: 'test activity',
-        start: currentDate,
-        end: currentDate
+        start: currentDateString,
+        end: currentDateString
       }
     }]
 

@@ -1,7 +1,7 @@
-import { useMemo, useEffect, useCallback } from 'react'
-import { BehaviorSubject } from 'rxjs'
+import { useMemo, useEffect, useCallback, SyntheticEvent } from 'react'
+import { BehaviorSubject, Subscribable } from 'rxjs'
 
-const useCreateInputStream = () => {
+const useCreateInputStream = (): [Subscribable<string>, (event: SyntheticEvent) => void] => {
   const value$ = useMemo(() => new BehaviorSubject(''), [])
   const onChange = useCallback(
     event => {

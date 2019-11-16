@@ -1,5 +1,10 @@
 import ApolloClient from 'apollo-boost'
 import { gql } from 'graphql.macro'
+import { Job } from '../types/Job'
+import { Resource } from '../types/Resource'
+import { JobAllocation } from '../types/JobAllocation'
+import { ActivityAllocation } from '../types/ActivityAllocation'
+import { ObservableInput } from 'rxjs'
 // import Axios from 'axios'
 
 const graphClient = new ApolloClient({
@@ -9,8 +14,19 @@ const graphClient = new ApolloClient({
 // const axiosClient = Axios.create({
 //   baseURL: 'http://localhost:3400'
 // })
+export interface ISwimeLaneService {
+  getResources: () => ObservableInput<Resource[]>
+  getJobAllocations: () =>  ObservableInput<JobAllocation[]>
+  getActivityAllocations: () => ObservableInput<ActivityAllocation[]>
+}
 
-export const DataService = {
+export interface IJobService {
+  getJobsWithSearchTerm: (searchTerm?: string) => ObservableInput<Job[]> 
+}
+
+export interface IDataService extends ISwimeLaneService, IJobService{}
+
+export const DataService: IDataService = {
 
   getJobsWithSearchTerm: (searchTerm) => {
     return graphClient.query({

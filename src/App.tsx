@@ -13,8 +13,15 @@ const AppTabs = {
   Third: 'three'
 }
 
-class App extends Component {
-  constructor (props) {
+interface AppProps {
+}
+
+interface AppState {
+  selectedTab: string
+}
+
+class App extends Component<AppProps, AppState> {
+  constructor (props: AppProps) {
     super(props)
 
     const defaultTab = window.localStorage.getItem('selectedTab') || AppTabs.First
@@ -23,7 +30,7 @@ class App extends Component {
     }
   }
 
-  setSelectedTab = (selectedTab) => {
+  setSelectedTab = (selectedTab: string): void => {
     this.setState({
       selectedTab
     }, () => window.localStorage.setItem('selectedTab', this.state.selectedTab))

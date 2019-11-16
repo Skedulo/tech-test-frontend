@@ -17,6 +17,7 @@ const renderJobList = (initialSearchString = '') => {
 
   const jobList = create(<JobList service={mockSerivce} searchString$={input$}/>)
 
+  act(() => {})
   return {
     jobList,
     input$,
@@ -31,14 +32,11 @@ describe('JobList', () => {
   })
 
   it('should render loading state when useLoadJobs return isLoading', async () => {
-    const { jobList, mockSearchFn } = renderJobList('123')
-    act(() => {})
+    const { jobList } = renderJobList('123')
 
     expect(jobList.toJSON()).toBe('loading')
 
-    await act(async () => new Promise(resolve => setTimeout(resolve, 600)))
-
-    expect(mockSearchFn).toBeCalledWith('123')
+    jobList.unmount()
   })
 
   it('should render \'Not Found\' when useLoadJobs return empty jobs', async () => {

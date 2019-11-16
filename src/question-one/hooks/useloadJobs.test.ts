@@ -1,8 +1,9 @@
 import { renderHook, act } from '@testing-library/react-hooks'
 
-import { BehaviorSubject } from 'rxjs'
+import { BehaviorSubject, ObservableInput } from 'rxjs'
 
 import useLoadJobs from './useLoadJobs'
+import { Job } from '../../types/Job'
 
 describe('useLoadJobs', () => {
   it('should return initial state when lastest node is less than 3 character', () => {
@@ -90,7 +91,9 @@ describe('useLoadJobs', () => {
 
   it('can debounce if the input stream change rapidly', async () => {
     const test$ = new BehaviorSubject('first text')
-    const searchFn = jest.fn(val => [`mock-jobs of ${val}`])
+    const searchFn = jest.fn<ObservableInput<Job[]>, [string]>(val => [[{
+      id: val
+    } as Job]])
     const expectCallVal = 'next text'
 
     const { result } = renderHook(() => useLoadJobs(test$, searchFn))
@@ -118,6 +121,6 @@ describe('useLoadJobs', () => {
     // only call searchFn with latest aguments
     expect(searchFn.mock.calls.length).toBe(1)
     expect(searchFn.mock.calls[0][0]).toBe(expectCallVal)
-    expect(result.current.jobs).toBe(`mock-jobs of ${expectCallVal}`)
+    expect(result.current.jobs).toEqual(([{id:'next text'}]))
   })
 })

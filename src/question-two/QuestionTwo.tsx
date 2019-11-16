@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import { SectionGroup } from '../components/section/SectionGroup'
 import { SectionPanel } from '../components/section/SectionPanel'
@@ -7,6 +6,7 @@ import { SectionPanel } from '../components/section/SectionPanel'
 import './QuestionTwo.css'
 import useLoadSwimelane from './useLoadSwimelane'
 import { Swimlane } from '../components/swimlane/Swimlane'
+import { IDataService } from '../service/DataService'
 
 /**
  * Please do not change these dates, the data on the server all fall within the 01/09/2018
@@ -14,7 +14,7 @@ import { Swimlane } from '../components/swimlane/Swimlane'
 const RANGE_START = new Date('2018-09-01T00:00:00Z')
 const RANGE_END = new Date('2018-09-01T24:00:00Z')
 
-const QuestionTwo = ({ service }) => {
+const QuestionTwo: React.FC<{service: IDataService}> = ({ service }) => {
   const { swimelane, isLoading } = useLoadSwimelane(service)
 
   return (
@@ -24,14 +24,6 @@ const QuestionTwo = ({ service }) => {
       </SectionPanel>
     </SectionGroup>
   )
-}
-
-QuestionTwo.propTypes = {
-  service: PropTypes.shape({
-    getResources: PropTypes.func,
-    getJobAllocations: PropTypes.func,
-    getActivityAllocations: PropTypes.func
-  })
 }
 
 export { QuestionTwo }

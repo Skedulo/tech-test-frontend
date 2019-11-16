@@ -1,10 +1,10 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import { Job } from '../../types/Job'
 
 import './JobCard.css'
-const formatTime = (date) => `${date.getUTCHours().toString().padStart(2, '0')}:${date.getUTCMinutes().toString().padStart(2, '0')}`
+const formatTime = (date: Date) => `${date.getUTCHours().toString().padStart(2, '0')}:${date.getUTCMinutes().toString().padStart(2, '0')}`
 
-const JobCard = ({ job: { name, location, id, start, end, jobAllocations } }) => {
+const JobCard: React.FC<{job: Job}> = ({ job: {start, end, name, id, location, jobAllocations = []} }) => {
   const startDate = new Date(start)
   const endDate = new Date(end)
   return (
@@ -25,17 +25,6 @@ const JobCard = ({ job: { name, location, id, start, end, jobAllocations } }) =>
       </div>
     </div>
   )
-}
-
-JobCard.propTypes = {
-  job: PropTypes.shape({
-    name: PropTypes.string,
-    location: PropTypes.string,
-    id: PropTypes.string,
-    start: PropTypes.instanceOf(Date),
-    end: PropTypes.instanceOf(Date),
-    jobAllocations: PropTypes.array
-  })
 }
 
 export default JobCard

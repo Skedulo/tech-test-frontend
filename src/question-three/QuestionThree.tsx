@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import Header from './components/Header'
 import Sidebar from './components/Sidebar'
@@ -7,8 +6,9 @@ import Sidebar from './components/Sidebar'
 import './QuestionThree.css'
 import JobList from './components/JobList'
 import RightHandSide from './components/RightHandSide'
+import { IDataService } from '../service/DataService'
 
-const QuestionThree = ({ service }) => {
+const QuestionThree: React.FC<{service: IDataService}> = ({ service }) => {
   return (
     <div className="q3__container">
       <Header className="q3__header"/>
@@ -17,12 +17,6 @@ const QuestionThree = ({ service }) => {
       <RightHandSide className="q3__fake" />
     </div>
   )
-}
-
-QuestionThree.propTypes = {
-  service: PropTypes.shape({
-    getJobsWithSearchTerm: PropTypes.func
-  })
 }
 
 export { QuestionThree }

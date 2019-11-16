@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react'
-export default ($input) => {
+import { Subscribable } from 'rxjs'
+
+
+export default ($input: Subscribable<string>) => {
   const [val, setVal] = useState('')
 
   useEffect(() => {

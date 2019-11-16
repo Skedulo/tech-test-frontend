@@ -1,11 +1,19 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import useLoadJobs from '../hooks/useLoadJobs'
 
 import JobItem from './JobItem'
+import { Subscribable, ObservableInput } from 'rxjs'
+import {Job} from '../../types/Job'
 
-const JobList = ({ searchString$, service }) => {
+type JobListProps =  {
+  searchString$: Subscribable<string>,
+  service: {
+    getJobsWithSearchTerm: () => ObservableInput<Job[]>
+  }
+}
+
+const JobList: React.FC<JobListProps> = ({ searchString$, service }) => {
   const { jobs, isLoading, isInitial } = useLoadJobs(searchString$, service.getJobsWithSearchTerm)
 
   if (isInitial) {
@@ -13,25 +21,18 @@ const JobList = ({ searchString$, service }) => {
   }
 
   if (isLoading) {
-    return 'loading'
+    return <>loading</>
   }
 
   if (!jobs.length) {
-    return 'Not Found'
-  }
+    return <>Not Found</>
+}
 
   return (
     <React.Fragment>
       {jobs.map((item) => <JobItem key={item.id} item={item} />)}
     </React.Fragment>
   )
-}
-
-JobList.propTypes = {
-  searchString$: PropTypes.object.isRequired,
-  service: PropTypes.shape({
-    getJobsWithSearchTerm: PropTypes.func.isRequired
-  }).isRequired
 }
 
 export default JobList
