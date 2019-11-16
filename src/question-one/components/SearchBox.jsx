@@ -1,8 +1,17 @@
 import React from 'react'
-import useReadInputStream from "../hooks/useReadInputStream";
+import PropTypes from 'prop-types'
 
-export default ({value$, onChange}) => {
-    let value = useReadInputStream(value$);
+import useReadInputStream from '../hooks/useReadInputStream'
 
-    return <input value={value} onChange={onChange} />
+const SearhBox = ({ value$, onChange }) => {
+  const value = useReadInputStream(value$)
+
+  return <input value={value} onChange={onChange} />
 }
+
+SearhBox.propTypes = {
+  value$: PropTypes.object.isRequired,
+  onChange: PropTypes.func.isRequired
+}
+
+export default SearhBox

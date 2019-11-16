@@ -1,5 +1,13 @@
 import React from 'react'
-import './Header.css';
+import PropTypes from 'prop-types'
 
-export default ({className}) => 
-    <div className={`header ${className}`}>Header</div>
+import './Header.css'
+
+const Header = ({ className }) =>
+  <div className={`header ${className}`}>Header</div>
+
+Header.propTypes = {
+  className: PropTypes.string
+}
+
+export default Header

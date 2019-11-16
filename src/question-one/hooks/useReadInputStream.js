@@ -1,14 +1,14 @@
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 export default ($input) => {
-    let [val, setVal] = useState('');
+  const [val, setVal] = useState('')
 
-    useEffect(() => {
-        let subscription = $input.subscribe(setVal)
+  useEffect(() => {
+    const subscription = $input.subscribe(setVal)
 
-        return () => {
-            subscription.unsubscribe();
-        }
-    }, [$input, setVal])
+    return () => {
+      subscription.unsubscribe()
+    }
+  }, [$input, setVal])
 
-    return val
+  return val
 }

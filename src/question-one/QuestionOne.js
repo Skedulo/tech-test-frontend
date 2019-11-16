@@ -1,16 +1,17 @@
-import React from 'react';
+import React from 'react'
+import PropTypes from 'prop-types'
 
 import { SectionGroup } from '../components/section/SectionGroup'
 import { SectionPanel } from '../components/section/SectionPanel'
 
 import './QuestionOne.css'
-import useCreateInputStream from './hooks/useCreateInputStream';
+import useCreateInputStream from './hooks/useCreateInputStream'
 
-import SearchBox from './components/SearchBox';
-import JobList from './components/JobList';
+import SearchBox from './components/SearchBox'
+import JobList from './components/JobList'
 
-const QuestionOne = ({service}) => {
-  let [searchString$, onChange] = useCreateInputStream();
+const QuestionOne = ({ service }) => {
+  const [searchString$, onChange] = useCreateInputStream()
   return (
     <SectionGroup>
       <SectionPanel>
@@ -21,8 +22,14 @@ const QuestionOne = ({service}) => {
           <JobList searchString$={searchString$} service={service} />
         </div>
       </SectionPanel>
-  </SectionGroup>
+    </SectionGroup>
   )
 }
 
-export {QuestionOne}
+QuestionOne.propTypes = {
+  service: PropTypes.shape({
+    getJobsWithSearchTerm: PropTypes.func
+  })
+}
+
+export { QuestionOne }

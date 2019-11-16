@@ -28,7 +28,7 @@ class App extends Component {
       selectedTab
     }, () => localStorage.setItem('selectedTab', this.state.selectedTab))
   }
-  
+
   renderTabs = () => {
     return (
       <div className="app__tab-group">
@@ -57,7 +57,7 @@ class App extends Component {
     }
   }
 
-  render() {
+  render () {
     return (
       <div className="app__container">
         <header className="app__header">
@@ -72,4 +72,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App

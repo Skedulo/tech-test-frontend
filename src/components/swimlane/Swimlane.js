@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 import './Swimlane.css'
 
@@ -32,11 +32,11 @@ export const Card = props => {
   const duration = props.end - props.start
   const startOffset = props.start - props.laneStart
 
-  if(fullWidth < 0 || duration < 0 || startOffset < 0) {
-    return null;
+  if (fullWidth < 0 || duration < 0 || startOffset < 0) {
+    return null
   }
 
-  const widthPercent =  duration / (fullWidth / 100)
+  const widthPercent = duration / (fullWidth / 100)
   const leftPercent = startOffset / (fullWidth / 100)
   const style = { ...(props.style || {}), left: leftPercent + '%', width: widthPercent + '%' }
   console.log('render card', style, fullWidth / 1000 / 60, duration / 1000 / 60, startOffset / 1000 / 60, props.start, props.laneStart)

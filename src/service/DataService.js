@@ -1,14 +1,14 @@
-import ApolloClient from 'apollo-boost';
-import gql from 'graphql-tag';
-import Axios from 'axios';
+import ApolloClient from 'apollo-boost'
+import gql from 'graphql-tag'
+// import Axios from 'axios'
 
 const graphClient = new ApolloClient({
   uri: 'http://localhost:3500/graphql'
-});
-
-const axiosClient = Axios.create({
-  baseURL: 'http://localhost:3400'
 })
+
+// const axiosClient = Axios.create({
+//   baseURL: 'http://localhost:3400'
+// })
 
 export const DataService = {
 
@@ -99,6 +99,6 @@ export const DataService = {
     })
       .then(result => result.data)
       .then(data => data.activityAllocations)
-  },
-  
+  }
+
 }

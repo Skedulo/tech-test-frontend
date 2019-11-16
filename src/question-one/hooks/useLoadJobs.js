@@ -1,17 +1,17 @@
-import {useReducer, useEffect} from 'react'
-import { partition, merge , from, of} from 'rxjs'
-import {mergeMap, switchMap, delay, startWith, map, takeUntil, distinctUntilChanged} from 'rxjs/operators'
+import { useReducer, useEffect } from 'react'
+import { partition, merge, from, of } from 'rxjs'
+import { mergeMap, switchMap, delay, startWith, map, takeUntil, distinctUntilChanged } from 'rxjs/operators'
 
 const initialState = {
   jobs: [],
   isLoading: false,
-  isInitial: true,
-};
+  isInitial: true
+}
 
-function reducer(state, action) {
+function reducer (state, action) {
   switch (action.type) {
-    case 'resetState': 
-      return initialState;
+    case 'resetState':
+      return initialState
     case 'startLoading':
       return {
         ...state,
@@ -25,17 +25,17 @@ function reducer(state, action) {
         isInitial: false
       }
     default:
-      throw new Error();
+      throw new Error()
   }
 }
 
 export default (searchString$, searchFn) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, initialState)
 
   useEffect(() => {
     const [skipSearch$, canSearch$] = partition(searchString$, (val) => val.length < 3)
 
-    let subscription = merge(
+    const subscription = merge(
       skipSearch$.pipe(
         map(() => ({
           type: 'resetState'
@@ -43,7 +43,7 @@ export default (searchString$, searchFn) => {
       ),
       canSearch$.pipe(
         distinctUntilChanged(),
-        switchMap(val => 
+        switchMap(val =>
           of(null).pipe(
             delay(500),
             mergeMap(
@@ -56,20 +56,18 @@ export default (searchString$, searchFn) => {
                 )
             ),
             startWith(({
-                type: 'startLoading'
+              type: 'startLoading'
             })),
             takeUntil(skipSearch$)
           )
         )
-      )       
+      )
     ).subscribe(dispatch)
 
     return () => {
-        subscription.unsubscribe()
+      subscription.unsubscribe()
     }
-
   }, [searchString$, searchFn])
 
-  return state;
-}   
-    
+  return state
+}

@@ -1,13 +1,14 @@
-import React from 'react';
+import React from 'react'
+import PropTypes from 'prop-types'
 
 import Header from './components/Header'
 import Sidebar from './components/Sidebar'
 
 import './QuestionThree.css'
-import JobList from './components/JobList';
-import RightHandSide from './components/RightHandSide';
+import JobList from './components/JobList'
+import RightHandSide from './components/RightHandSide'
 
-export const QuestionThree = ({service}) => {
+const QuestionThree = ({ service }) => {
   return (
     <div className="q3__container">
       <Header className="q3__header"/>
@@ -17,3 +18,11 @@ export const QuestionThree = ({service}) => {
     </div>
   )
 }
+
+QuestionThree.propTypes = {
+  service: PropTypes.shape({
+    getJobsWithSearchTerm: PropTypes.func
+  })
+}
+
+export { QuestionThree }

@@ -60,54 +60,54 @@ export const typeDefs = gql`
 
 export const resolvers = {
   Query: {
-    jobs(obj, args) {
+    jobs (obj, args) {
       return jobModel.list()
         .then(results => results.filter(x => {
-          if(!args.name) {
+          if (!args.name) {
             return true
           }
 
           return x.name.toLowerCase().indexOf(args.name.toLowerCase()) >= 0
         }))
     },
-    contacts() {
+    contacts () {
       return contactModel.list()
     },
-    activities() {
+    activities () {
       return activityModel.list()
     },
-    resources() {
+    resources () {
       return resourceModel.list()
     },
-    jobAllocations() {
+    jobAllocations () {
       return jobAllocationModel.list()
     },
-    activityAllocations() {
+    activityAllocations () {
       return activityAllocationModel.list()
     }
   },
   Job: {
-    contact(source) {
+    contact (source) {
       return contactModel.find(source.contactId)
     },
-    jobAllocations(source) {
+    jobAllocations (source) {
       return jobAllocationModel.list()
         .then(results => results.filter(x => x.jobId === source.id))
     }
   },
   JobAllocation: {
-    resource(source) {
+    resource (source) {
       return resourceModel.find(source.resourceId)
     },
-    job(source) {
+    job (source) {
       return jobModel.find(source.jobId)
     }
   },
   ActivityAllocation: {
-    resource(source) {
+    resource (source) {
       return resourceModel.find(source.resourceId)
     },
-    activity(source) {
+    activity (source) {
       return activityModel.find(source.activityId)
     }
   }

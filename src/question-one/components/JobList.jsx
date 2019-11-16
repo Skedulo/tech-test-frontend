@@ -1,14 +1,15 @@
-import React from 'react';
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import useLoadJobs from '../hooks/useLoadJobs';
+import useLoadJobs from '../hooks/useLoadJobs'
 
 import JobItem from './JobItem'
 
-export default ({searchString$, service}) => {
-  const {jobs, isLoading, isInitial} = useLoadJobs(searchString$, service.getJobsWithSearchTerm)
+const JobList = ({ searchString$, service }) => {
+  const { jobs, isLoading, isInitial } = useLoadJobs(searchString$, service.getJobsWithSearchTerm)
 
   if (isInitial) {
-    return null;
+    return null
   }
 
   if (isLoading) {
@@ -25,3 +26,12 @@ export default ({searchString$, service}) => {
     </React.Fragment>
   )
 }
+
+JobList.propTypes = {
+  searchString$: PropTypes.object.isRequired,
+  service: PropTypes.shape({
+    getJobsWithSearchTerm: PropTypes.func.isRequired
+  }).isRequired
+}
+
+export default JobList

@@ -24,6 +24,14 @@
   "devDependencies": {
     "@testing-library/react": "^9.3.2",
     "@testing-library/react-hooks": "^3.2.1",
+    "eslint": "^6.2.2",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-jest": "^23.0.4",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-standard": "^4.0.0",
     "react-test-renderer": "^16.12.0"
   }
 }
