@@ -17,7 +17,7 @@ class App extends Component {
   constructor (props) {
     super(props)
 
-    const defaultTab = localStorage.getItem('selectedTab') || AppTabs.First
+    const defaultTab = window.localStorage.getItem('selectedTab') || AppTabs.First
     this.state = {
       selectedTab: defaultTab
     }
@@ -26,7 +26,7 @@ class App extends Component {
   setSelectedTab = (selectedTab) => {
     this.setState({
       selectedTab
-    }, () => localStorage.setItem('selectedTab', this.state.selectedTab))
+    }, () => window.localStorage.setItem('selectedTab', this.state.selectedTab))
   }
 
   renderTabs = () => {

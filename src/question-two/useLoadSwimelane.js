@@ -75,7 +75,7 @@ export default service => {
     return () => {
       subscription.unsubscribe()
     }
-  }, [])
+  }, [service])
 
   const swimelane = resources.map((resource) => ({
     key: resource.id,

@@ -1,5 +1,5 @@
 import ApolloClient from 'apollo-boost'
-import gql from 'graphql-tag'
+import { gql } from 'graphql.macro'
 // import Axios from 'axios'
 
 const graphClient = new ApolloClient({

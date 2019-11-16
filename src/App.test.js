@@ -25,7 +25,7 @@ class LocalStorageMock {
 };
 
 beforeAll(() => {
-  global.localStorage = new LocalStorageMock()
+  window.localStorage = new LocalStorageMock()
 })
 
 it('renders without crashing', () => {
