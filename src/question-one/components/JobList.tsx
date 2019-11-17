@@ -15,23 +15,26 @@ type JobListProps =  {
 
 const JobList: React.FC<JobListProps> = ({ searchString$, service }) => {
   const { jobs, isLoading, isInitial } = useLoadJobs(searchString$, service.getJobsWithSearchTerm)
+  let content
 
   if (isInitial) {
-    return null
+    content = null
+  } else if (isLoading) {
+    content = <>loading</>
+  } else if (!jobs.length) {
+    content = <>Not Found</>
+  } else {
+    content = (
+      <>
+        {jobs.map((item) => <JobItem key={item.id} item={item} />)}
+      </>
+    )
   }
-
-  if (isLoading) {
-    return <>loading</>
-  }
-
-  if (!jobs.length) {
-    return <>Not Found</>
-}
 
   return (
-    <React.Fragment>
-      {jobs.map((item) => <JobItem key={item.id} item={item} />)}
-    </React.Fragment>
+    <div title="Job List">
+      {content}
+    </div>
   )
 }
 

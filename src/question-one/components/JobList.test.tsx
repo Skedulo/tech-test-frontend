@@ -1,11 +1,9 @@
 import React from 'react'
-import { create, act } from 'react-test-renderer'
+import { render, act } from '@testing-library/react'
 
 import { BehaviorSubject } from 'rxjs'
 
 import JobList from './JobList'
-
-jest.mock('./JobItem', () => () => '<JobItem/>')
 
 const renderJobList = (initialSearchString = '') => {
   const mockSearchFn = jest.fn()
@@ -15,9 +13,8 @@ const renderJobList = (initialSearchString = '') => {
 
   const input$ = new BehaviorSubject(initialSearchString)
 
-  const jobList = create(<JobList service={mockSerivce} searchString$={input$}/>)
+  let jobList = render(<JobList service={mockSerivce} searchString$={input$}/>)
 
-  act(() => {})
   return {
     jobList,
     input$,
@@ -28,13 +25,15 @@ const renderJobList = (initialSearchString = '') => {
 describe('JobList', () => {
   it('should render nothing when useLoadJobs return inital', () => {
     const { jobList } = renderJobList()
-    expect(jobList.toJSON()).toBe(null)
+    expect(jobList.baseElement.textContent).toBe('')
+
+    jobList.unmount()
   })
 
   it('should render loading state when useLoadJobs return isLoading', async () => {
     const { jobList } = renderJobList('123')
 
-    expect(jobList.toJSON()).toBe('loading')
+    expect(jobList.baseElement.textContent).toBe('loading')
 
     jobList.unmount()
   })
@@ -43,23 +42,32 @@ describe('JobList', () => {
     const { jobList, mockSearchFn } = renderJobList('123')
     mockSearchFn.mockImplementationOnce(() => [[]])
 
-    act(() => {})
-    expect(jobList.toJSON()).toBe('loading')
+    expect(jobList.baseElement.textContent).toBe('loading')
 
-    await act(async () => new Promise(resolve => setTimeout(resolve, 600)))
+    await act(async () => {
+      await new Promise(resolve => setTimeout(resolve, 600))
+    })
     expect(mockSearchFn).toBeCalledWith('123')
-    expect(jobList.toJSON()).toBe('Not Found')
+
+    expect(jobList.baseElement.textContent).toBe('Not Found')
+
+    jobList.unmount()
   })
 
   it('should render matchSnapshot when useLoadJobs return array jobs', async () => {
     const { jobList, mockSearchFn } = renderJobList('123')
     mockSearchFn.mockImplementationOnce(() => [[{ id: '1' }, { id: '2' }]])
+    
+    expect(jobList.baseElement.textContent).toBe('loading')
 
-    act(() => {})
-    expect(jobList.toJSON()).toBe('loading')
+    await act(async () => {
+      await new Promise(resolve => setTimeout(resolve, 600))
+    })
 
-    await act(async () => new Promise(resolve => setTimeout(resolve, 600)))
     expect(mockSearchFn).toBeCalledWith('123')
-    expect(jobList.toJSON()).toMatchSnapshot()
+    
+    expect(jobList.getAllByTitle(/^Job Item:/)).toHaveLength(2)
+
+    jobList.unmount()
   })
 })

@@ -11,7 +11,12 @@ interface SearchBoxProps {
 const SearhBox: React.FC<SearchBoxProps> = ({ value$, onChange }) => {
   const value = useReadInputStream(value$)
 
-  return <input value={value} onChange={onChange} />
+  return (
+    <label>
+      Job Name:
+      <input value={value} onChange={onChange} />
+    </label>
+  )
 }
 
 export default SearhBox

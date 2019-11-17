@@ -6,7 +6,7 @@ interface JobItemProps {
 }
 
 const JobItem : React.FC<JobItemProps>= ({ item }) => (
-  <div>
+  <div title={`Job Item: ${item.name}`}>
     <div>Jobs: {item.name}</div>
     <div>Start: {item.start}</div>
     <div>End: {item.end}</div>
