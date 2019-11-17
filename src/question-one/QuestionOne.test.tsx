@@ -12,7 +12,7 @@ let setup = () => {
 
   let utils = render(<QuestionOne service={mockSerivce}/>)
 
-  const inputNode = utils.getByLabelText('Job Name:')
+  const inputNode = utils.getByLabelText('Job Name:') as HTMLInputElement
   const jobListNode = utils.getByTitle('Job List')
   return {
     utils,
