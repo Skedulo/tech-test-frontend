@@ -41,6 +41,11 @@ export const Job = ({ job }) => {
           </div>
           <strong>{timeRange}</strong>
         </div>
+        {!!job.resourceNumber && (
+          <div className="job__resources">
+            <div className="job__resource">{job.resourceNumber}</div>
+          </div>
+        )}
       </div>
     </li>
   );
