@@ -1,0 +1,39 @@
+.jobs {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.job {
+  padding: 12px;
+  margin-bottom: 8px;
+  background-color: #ffffff;
+}
+
+.job__info {
+  margin-bottom: 8px;
+}
+
+.job__info__name {
+  font-size: 16px;
+}
+
+.job__info__id {
+  font-size: 16px;
+  color: #8d8383;
+}
+
+.job__info__contact {
+  font-size: 14px;
+  color: #8d8383;
+}
+
+.job__description {
+  display: flex;
+}
+
+.job__info__date {
+  flex: 1;
+  font-size: 14px;
+  color: #8d8383;
+}

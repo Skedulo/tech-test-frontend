@@ -1,0 +1,10 @@
+.input-base {
+  padding: 8px;
+  border: 1px solid black;
+  border-radius: 6px;
+}
+
+.input-base:focus,
+.input-base:active {
+  outline: 0;
+}
