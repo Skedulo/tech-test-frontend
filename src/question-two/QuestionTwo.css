@@ -1,0 +1,35 @@
+.timeline {
+  display: flex;
+  align-items: stretch;
+  height: 50px;
+  width: 100%;
+  border: 1px solid #d4d7de;
+  border-bottom: 0;
+}
+
+.timeline__title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 170px;
+  border-right: 1px solid #d4d7de;
+}
+
+.timeline__wrapper {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  height: 100%;
+}
+
+.timeline__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% / 24);
+  border-right: 1px solid #d4d7de;
+}
+
+.timeline__item:last-child {
+  border: 0;
+}

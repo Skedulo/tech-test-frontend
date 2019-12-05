@@ -78,3 +78,9 @@ export function debounce(func, wait) {
     timeout = setTimeout(executeFunction, wait);
   };
 }
+
+export function getFormatDatetoMillisecond(date) {
+  const myDate = new Date(date);
+  const withOffset = myDate.getTime();
+  return withOffset;
+}
