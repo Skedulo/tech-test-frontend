@@ -1,0 +1,9 @@
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading img {
+  height: 100px;
+}

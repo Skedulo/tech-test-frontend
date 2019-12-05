@@ -4,6 +4,7 @@ import { SectionGroup } from '../components/section/SectionGroup';
 import { SectionPanel } from '../components/section/SectionPanel';
 import { InputBase } from '../components/input/InputBase';
 import { Jobs } from '../components/jobs/Job';
+import { Loading } from '../components/loading/Loading';
 
 import { debounce } from '../utils';
 
@@ -54,7 +55,7 @@ export class QuestionOne extends Component {
             />
 
             {isLoading ? (
-              'Connecting...'
+              <Loading />
             ) : jobSearched.length > 0 ? (
               <Jobs jobs={jobSearched} />
             ) : (

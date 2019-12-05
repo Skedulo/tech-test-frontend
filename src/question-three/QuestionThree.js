@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { Jobs } from '../components/jobs/Job';
 import { Header } from '../components/header/Header';
+import { Loading } from '../components/loading/Loading';
 
 import './QuestionThree.css';
 
@@ -67,7 +68,7 @@ export class QuestionThree extends Component {
           <div className="body" style={styleHeader}>
             <section className="body__left">
               {isLoading ? (
-                'Connecting...'
+                <Loading />
               ) : jobs.length > 0 ? (
                 <Jobs className="body__left__jobs" jobs={jobs}></Jobs>
               ) : (
