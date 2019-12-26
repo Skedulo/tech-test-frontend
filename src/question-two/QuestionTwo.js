@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 
-import { getFormatDatetoMillisecond } from '../utils';
-import { SectionGroup } from '../components/section/SectionGroup';
-import { SectionPanel } from '../components/section/SectionPanel';
-
-import { Swimlane } from '../components/swimlane/Swimlane';
+import { SectionGroup } from '../components/section/SectionGroup'
+import { SectionPanel } from '../components/section/SectionPanel'
+import { Swimlane } from '../components/swimlane/Swimlane'
+import { LoadingIndicator } from '../common/LoadingIndicator'
+import { trackPromise } from 'react-promise-tracker'
+import { mergeWith, isArray } from 'lodash'
 
 import './QuestionTwo.css';
 
@@ -14,115 +15,97 @@ import './QuestionTwo.css';
 const RANGE_START = new Date('2018-09-01T00:00:00Z')
 const RANGE_END = new Date('2018-09-01T24:00:00Z')
 
-function formatAllocations(
-  jobs,
-  jobAllocations,
-  activities,
-  activityAllocations,
-) {
-  const jobAllocationsFormatted = jobAllocations.map(jobAllocation => {
-    const getJobsWithId = jobs.find(job => job.id === jobAllocation.job.id);
-
-    return {
-      resourceId: jobAllocation.resource.id,
-      description: getJobsWithId.name,
-      start: getFormatDatetoMillisecond(getJobsWithId.start),
-      end: getFormatDatetoMillisecond(getJobsWithId.end),
-    };
-  });
-
-  const activityAllocationsFormatted = activityAllocations.map(
-    activityAllocation => {
-      const getActivitiesWithId = activities.find(
-        activity => activity.id === activityAllocation.activity.id,
-      );
-
-      return {
-        resourceId: activityAllocation.resource.id,
-        description: getActivitiesWithId.name,
-        start: getFormatDatetoMillisecond(getActivitiesWithId.start),
-        end: getFormatDatetoMillisecond(getActivitiesWithId.end),
-      };
-    },
-  );
-
-  return [...jobAllocationsFormatted, ...activityAllocationsFormatted];
-}
-
 export class QuestionTwo extends Component {
-  state = {
-    isLoading: true,
-    dataList: [],
-    timelines: new Array(24).fill(''),
-  };
+  constructor(props) {
+    super(props)
 
-  componentDidMount() {
-    this.fetchJobsFullInfo();
-  }
-
-  async fetchJobsFullInfo() {
-    const jobs = await this.props.service.getJobs();
-    const activities = await this.props.service.getActivities();
-    const resources = await this.props.service.getResources();
-    const jobAllocations = await this.props.service.getJobAllocations();
-    const activityAllocations = await this.props.service.getActivityAllocations();
-
-    const allocations = formatAllocations(
-      jobs,
-      jobAllocations,
-      activities,
-      activityAllocations,
-    );
-
-    const result = resources.map(resource => {
-      const result = allocations.filter(
-        item => resource.id === item.resourceId,
-      );
-
-      return {
-        title: resource.name,
-        cards: result,
-      };
-    });
-
-    this.setState({
-      dataList: {
-        start: RANGE_START.getTime(),
-        end: RANGE_END.getTime(),
-        lanes: result,
-      },
-      isLoading: false,
-    });
+    this.state = {
+      hours: new Array(24).fill(''),
+      event: {}
+    };
   }
 
   render() {
-    const { isLoading, dataList, timelines } = this.state;
-
-    if (isLoading) {
-      return 'Connecting...';
-    }
 
     return (
       <SectionGroup>
         <SectionPanel>
           <div className="timeline">
-            <div className="timeline__title">Hours</div>
-            <div className="timeline__wrapper">
-              {timelines.map((number, index) => (
-                <div key={index} className="timeline__item">
-                  {index}
-                </div>
-              ))}
+            <div className="swimlane__title font-weight-bold">Timeline (h)</div>
+            <div className="timeline-hours">
+              {
+                this.state.hours.map((hour, idx) => {
+                  return <div className="timeline-hour" key={idx}>{idx}</div>
+                })
+              }
             </div>
           </div>
-
-          <Swimlane
-            lanes={dataList.lanes}
-            start={dataList.start}
-            end={dataList.end}
-          />
+          {this.state.event.lanes &&
+            <Swimlane start={this.state.event.start} end={this.state.event.end} lanes={this.state.event.lanes} />
+          }
+          <LoadingIndicator />
         </SectionPanel>
       </SectionGroup>
-    );
+    )
+  }
+
+  buildAllocations(ressources, jobs, jobAllocations, activities, activityAllocations) {
+    let jobEvents = ressources.map(res => {
+      return {
+        title: res.name,
+        cards: jobAllocations
+          .filter(x => x.resourceId + '' === res.id)
+          .map(x => {
+            let job = jobs.filter(j => j.id === x.jobId + '')[0];
+            return {
+              description: job.name,
+              start: new Date(job.start),
+              end: new Date(job.end)
+            }
+          })
+      }
+    });
+    let activityEvents = ressources.map(res => {
+      return {
+        title: res.name,
+        cards: activityAllocations
+          .filter(x => x.resourceId + '' === res.id)
+          .map(x => {
+            let activity = activities.filter(j => j.id === x.activityId + '')[0];
+            return {
+              description: activity.name,
+              start: new Date(activity.start),
+              end: new Date(activity.end)
+            }
+          })
+      }
+    });
+    return {
+      start: RANGE_START,
+      end: RANGE_END,
+      lanes: mergeWith(jobEvents, activityEvents, (objValue, srcValue) => {
+        if (isArray(objValue)) {
+          return objValue.concat(srcValue);
+        }
+      })
+    }
+  }
+  componentDidMount() {
+    trackPromise(
+      Promise.all([
+        this.props.service.getJobs(),
+        this.props.service.getActivities(),
+        this.props.service.getActivityAllocations(),
+        this.props.service.getJobAllocations(),
+        this.props.service.getResources()])
+        .then(result => {
+          let jobs = result[0];
+          let activities = result[1];
+          let activityAllocations = result[2];
+          let jobAllocations = result[3];
+          let resources = result[4];
+          let event = this.buildAllocations(resources, jobs, jobAllocations, activities, activityAllocations);
+          this.setState({ event: event });
+        }))
   }
 }
