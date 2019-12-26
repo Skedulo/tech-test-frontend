@@ -1,0 +1,23 @@
+.timeline {
+    display: flex;
+    border: 1px solid #d4d7de;
+    line-height: 3em;
+}
+
+.timeline .timeline-hours {
+    padding: 0;
+    position: relative;
+    display: flex;
+    flex: 1;
+}
+
+.timeline .timeline-hour {
+    width: 4.16%;
+    border-right: 1px solid #d4d7de;
+    border-collapse: collapse;
+    flex: 1;
+    text-align: center;
+}
+.timeline .timeline-hour:last-child{
+    border-right: none;
+}
