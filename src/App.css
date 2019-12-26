@@ -44,7 +44,7 @@
 }
 
 .app__content-blank {
-  height: calc(100vh - 92px)
+  height: calc(100vh - 93px)
 }
 
 .section__panel {
@@ -55,4 +55,12 @@
 
 .section__panel:last-child {
   border-bottom-color: transparent
+}
+
+.waiting-indicator {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

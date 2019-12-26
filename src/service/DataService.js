@@ -1,164 +1,67 @@
 import ApolloClient from 'apollo-boost';
 import gql from 'graphql-tag';
+import Axios from 'axios';
 
 const graphClient = new ApolloClient({
-  uri: 'http://localhost:3500/graphql',
+  uri: 'http://localhost:3500/graphql'
 });
 
+const axiosClient = Axios.create({
+  baseURL: 'http://localhost:3400'
+})
+
 export const DataService = {
-  getJobsWithSearchTerm: async searchTerm => {
-    const { data } = await graphClient.query({
+  //
+  //  SAMPLE GraphQL Call
+  
+  getJobsWithSearchTerm: (searchTerm) => {
+    return graphClient.query({
       query: gql`
-        query($searchTerm: String) {
-          jobs(name: $searchTerm) {
+      query ($searchTerm: String){
+        jobs(name: $searchTerm) {
+          name,
+          start,
+          end,
+          contact {
             id
             name
-            start
-            end
-            contact {
-              id
-              name
-            }
           }
         }
+      }
       `,
       variables: {
-        searchTerm: searchTerm,
-      },
-    });
-
-    const result = data.jobs.map(job => {
-      return Object.assign({}, job, {
-        id: job.id + '',
-      });
-    });
-
-    return result;
+        searchTerm: searchTerm
+      }
+    })
+      .then(result => result.data)
+      .then(data => data.jobs)
   },
 
-  getJobs: async () => {
-    const { data } = await graphClient.query({
-      query: gql`
-        {
-          jobs {
-            id
-            name
-            start
-            end
-            contact {
-              id
-              name
-            }
-          }
-        }
-      `,
-    });
-    const result = data.jobs.map(job =>
-      Object.assign({}, job, {
-        id: job.id + '',
-      }),
-    );
-    return result;
+  
+  // SAMPLE Normal call
+  
+  getJobs: () => {
+    return axiosClient.get('/jobs')
+      .then(result => result.data.map(x => Object.assign({}, x, { id: x.id + '' })))
   },
 
-  getActivities: async () => {
-    const { data } = await graphClient.query({
-      query: gql`
-        {
-          activities {
-            id
-            name
-            start
-            end
-          }
-        }
-      `,
-    });
-
-    const result = data.activities.map(activitie =>
-      Object.assign({}, activitie, {
-        id: activitie.id + '',
-      }),
-    );
-    return result;
+  getJobAllocations: () => {
+    return axiosClient.get('/jobAllocations')
+      .then(result => result.data.map(x => Object.assign({}, x, { id: x.id + '' })))
   },
 
-  getResources: async () => {
-    const { data } = await graphClient.query({
-      query: gql`
-        {
-          resources {
-            id
-            name
-          }
-        }
-      `,
-    });
-
-    const result = data.resources.map(resource =>
-      Object.assign({}, resource, {
-        id: resource.id + '',
-      }),
-    );
-    return result;
+  getResources: () => {
+    return axiosClient.get('/resources')
+      .then(result => result.data.map(x => Object.assign({}, x, { id: x.id + '' })))
   },
 
-  getJobAllocations: async () => {
-    const { data } = await graphClient.query({
-      query: gql`
-        {
-          jobAllocations {
-            id
-            resource {
-              id
-              name
-            }
-            job {
-              id
-              name
-              start
-              end
-            }
-          }
-        }
-      `,
-    });
-    const jobAllocations = data.jobAllocations.map(jobAllocation =>
-      Object.assign({}, jobAllocation, {
-        id: jobAllocation.id + '',
-      }),
-    );
-
-    return jobAllocations;
+  getActivities: () => {
+    return axiosClient.get('/activities')
+      .then(result => result.data.map(x => Object.assign({}, x, { id: x.id + '' })))
   },
 
-  getActivityAllocations: async () => {
-    const { data } = await graphClient.query({
-      query: gql`
-        {
-          activityAllocations {
-            id
-            resource {
-              id
-              name
-            }
-            activity {
-              id
-              name
-              start
-              end
-            }
-          }
-        }
-      `,
-    });
-    const activityAllocations = data.activityAllocations.map(
-      activityAllocation =>
-        Object.assign({}, activityAllocation, {
-          id: activityAllocation.id + '',
-        }),
-    );
-
-    return activityAllocations;
-  },
-};
+  getActivityAllocations: () => {
+    return axiosClient.get('/activityAllocations')
+      .then(result => result.data.map(x => Object.assign({}, x, { id: x.id + '' })))
+  }
+}

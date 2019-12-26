@@ -4,6 +4,12 @@ For this question we want you to fetch data from a couple of endpoints on the se
 
 We don’t need any input fields, toggle states or transitions on the page.  You can start fetching as soon as the page has loaded and display once the data has been received.
 
+/resources
+/activities
+/jobs
+/jobAllocations
+/activityAllocations
+
 On the server you’ll find an endpoint called ‘/resources’ which has data on a couple of people.  These people were assigned a few Jobs and Activities (‘/jobs’ and ‘/activities’ endpoints respectively) during the day.  Each person's assignment for the day can be found via the ‘/jobAllocations’ and ‘/activityAllocations’ endpoints.  You should note that each job and activity may be assigned to multiple people.
 
 Once you have that data we’d like you to display it in the Swimlane component provided.  Please do not change the shape of the properties being sent to the Swimlane component, you will need to modify the data received from the server to fit the component's structure.

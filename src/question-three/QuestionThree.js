@@ -1,90 +1,68 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import { JobCard } from "../components/job/JobCard"
+import { RessourcesMock } from "../components/job/RessourcesMock"
+import { LoadingIndicator } from '../common/LoadingIndicator'
+import { trackPromise } from 'react-promise-tracker'
 
-import { Jobs } from '../components/jobs/Job';
-import { Header } from '../components/header/Header';
-import { Loading } from '../components/loading/Loading';
-
-import './QuestionThree.css';
+import './QuestionThree.css'
 
 export class QuestionThree extends Component {
-  state = {
-    isLoading: true,
-    jobs: [],
-    heightHeader: 0,
-    mockupList: new Array(12).fill(
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    ),
-  };
-
-  headerRef = null;
-
-  componentDidMount() {
-    this.fetchJobs();
-
-    if (this.headerRef) {
-      this.setState({ heightHeader: this.headerRef.clientHeight });
-    }
-  }
-
-  async fetchJobs() {
-    const jobs = await this.props.service.getJobs();
-    const jobAllocations = await this.props.service.getJobAllocations();
-    const result = jobs.map(job => {
-      const jobWithAllocation = jobAllocations.filter(
-        allocation => allocation.job.id === job.id,
-      );
-      return {
-        ...job,
-        resourceNumber: jobWithAllocation.length,
-      };
-    });
-
-    this.setState({ jobs: result, isLoading: false });
+  constructor(props) {
+    super(props)
+    this.state = { jobs: [] }
   }
 
   render() {
-    const { isLoading, jobs, mockupList, heightHeader } = this.state;
-
-    const styleHeader = {
-      height: `calc(100% - ${heightHeader}px)`,
-    };
-
     return (
-      <div className="container">
-        <div className="sidebar">
-          <ul className="sidebar__list">
-            <li className="sidebar__item"></li>
-            <li className="sidebar__item"></li>
-            <li className="sidebar__item"></li>
-            <li className="sidebar__item"></li>
-          </ul>
-          <ul className="sidebar__list">
-            <li className="sidebar__item"></li>
-          </ul>
-        </div>
-        <main className="main">
-          <Header headerRef={el => (this.headerRef = el)}>Header</Header>
-
-          <div className="body" style={styleHeader}>
-            <section className="body__left">
-              {isLoading ? (
-                <Loading />
-              ) : jobs.length > 0 ? (
-                <Jobs className="body__left__jobs" jobs={jobs}></Jobs>
-              ) : (
-                'No Results!'
-              )}
-            </section>
-            <section className="body__right">
-              <ul className="body__right__boxs">
-                {mockupList.map(text => (
-                  <li className="body__right__box">{text}</li>
-                ))}
-              </ul>
-            </section>
+      <div>
+        <div className="outer">
+          <div className="body-container">
+            <div className="flex-container">
+              <div className="flex-content">
+                <div className="full-height">
+                  <div className="side-bar">
+                    <ul>
+                      <li><a href="#"></a></li>
+                      <li><a href="#"></a></li>
+                      <li><a href="#"></a></li>
+                      <li><a href="#"></a></li>
+                    </ul>
+                    <a class="special" href="#"></a>
+                  </div>
+                  <div className="main-content">
+                    <div className="flex-container">
+                      <div className="flex-header header-text">
+                        Header
+                      </div>
+                      <div className="flex-content">
+                        <div className="container full-height">
+                          <div className="row full-height">
+                            <div className="col-4 left-side full-height">
+                              {this.state.jobs.map((job, idx) => (
+                                <JobCard job={job} index={idx} key={job.id} />
+                              ))}
+                              <LoadingIndicator />
+                            </div>
+                            <div className="col-8 right-side full-height">
+                              <RessourcesMock />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </main>
-      </div>
-    );
+        </div>
+      </div>)
+  }
+
+  componentDidMount() {
+    trackPromise(
+      this.props.service.getJobs().then(jobs => {
+        this.setState({ jobs: jobs });
+      }));
   }
 }
