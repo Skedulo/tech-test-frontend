@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import { SectionGroup } from '../components/section/SectionGroup'
 import { SectionPanel } from '../components/section/SectionPanel'
@@ -11,22 +11,12 @@ import './QuestionTwo.css';
 const RANGE_START = new Date('2018-09-01T00:00:00Z')
 const RANGE_END = new Date('2018-09-01T24:00:00Z')
 
-export class QuestionTwo extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-    }
-  }
-
-  render() {
-
-    return (
-      <SectionGroup>
-        <SectionPanel>
-          Please refer to INSTRUCTIONS.md
-        </SectionPanel>
-      </SectionGroup>
-    )
-  }
+export const QuestionTwo = (props) => {
+  return (
+    <SectionGroup>
+      <SectionPanel>
+        Please refer to INSTRUCTIONS.md
+      </SectionPanel>
+    </SectionGroup>
+  )
 }
