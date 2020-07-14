@@ -1,23 +1,41 @@
 {
-  "name": "tech-test",
+  "name": "tech-test-frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "apollo-boost": "^0.1.15",
     "axios": "^0.18.0",
-    "graphql": "^14.0.2",
-    "graphql-tag": "^2.9.2",
-    "react": "^16.5.0",
-    "react-dom": "^16.5.0",
-    "react-scripts": "1.1.5"
+    "graphql": "^14.7.0",
+    "graphql-tag": "^2.10.4",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1"
   },
   "scripts": {
-    "bootstrap": "npm install && npm run server:bootstrap",
-    "start": "react-scripts start & npm run server:start",
+    "bootstrap": "yarn install && yarn server:bootstrap",
+    "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server:bootstrap": "cd ./src/server && npm install",
-    "server:start": "cd ./src/server && npm run dev"
+    "server:bootstrap": "cd ./src/server && yarn install",
+    "server:start": "cd ./src/server && yarn dev"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
