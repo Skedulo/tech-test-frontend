@@ -66,13 +66,13 @@
     "workbox-webpack-plugin": "4.3.1"
   },
   "scripts": {
-    "bootstrap": "yarn install && yarn server:bootstrap",
+    "bootstrap": "npm install && npm run server:bootstrap",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
     "test:ci": "CI=true npm run test",
-    "server:bootstrap": "cd ./src/server && yarn install",
-    "server:start": "cd ./src/server && yarn dev"
+    "server:bootstrap": "cd ./src/server && npm install",
+    "server:start": "cd ./src/server && npm run dev"
   },
   "eslintConfig": {
     "extends": "react-app"
