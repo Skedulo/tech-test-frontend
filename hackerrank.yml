@@ -1,0 +1,14 @@
+version: 1.0
+configuration:
+  has_webserver: true
+  scoring:
+    command: "yarn test"
+    files:
+      - junit.xml
+  ide_config:
+    default_open_files:
+      - src/App.js
+    project_menu:
+      run: yarn start
+      install: yarn bootstrap
+      test: yarn test
