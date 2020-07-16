@@ -2,7 +2,7 @@ version: 1.0
 configuration:
   has_webserver: true
   scoring:
-    command: "npm run test"
+    command: "npm install && npm run test:ci"
     files:
       - junit.xml
   ide_config:
