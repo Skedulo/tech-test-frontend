@@ -43,7 +43,6 @@
     "jest-junit": "^11.0.1"
   },
   "jest": {
-    "reporters": [ "default", "jest-junit" ]
   },
   "jest-junit": {
     "suiteName": "jest tests",
