@@ -7,17 +7,17 @@
 
 ## Installation Instructions
 Install:
-    ```yarn bootstrap```
+    ```npm run bootstrap```
 
 This installs everything for the App as well as the Server, so please don't run ```npm install``` (unless you also want to run it from the `server` folder)
 
 ## Running the App
 Run:
-    ```yarn start```
+    ```npm run start```
 
 ## Testing the App
 Run:
-    ```yarn test```
+    ```npm test```
 
 
 ## Instructions
