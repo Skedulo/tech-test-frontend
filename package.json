@@ -16,7 +16,7 @@
   },
   "scripts": {
     "bootstrap": "yarn install && yarn server:bootstrap",
-    "start": "react-scripts start",
+    "start": "yarn server:start & react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
