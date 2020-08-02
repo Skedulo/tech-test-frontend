@@ -1,11 +1,12 @@
 import React, { useState, useCallback } from 'react';
-import Loader from "react-loader-spinner";
 
 import { SectionGroup } from '../components/section/SectionGroup'
 import { SectionPanel } from '../components/section/SectionPanel'
 
 import JobList from './JobList';
 import './QuestionOne.css'
+
+const Loader = () => <div className="loader">Loading...</div>
 
 export const QuestionOne = ({ service }) => {
   const [searchedText, setSearchedText] = useState('');
@@ -33,12 +34,7 @@ export const QuestionOne = ({ service }) => {
       <SectionPanel>
         <input value={searchedText} onChange={onSearchedTextChange}/>
         { isLoadingJobList ? 
-          <Loader
-            type="Puff"
-            color="#00BFFF"
-            height={100}
-            width={100}
-          /> : <JobList jobs={jobs} /> }
+          <Loader/> : <JobList jobs={jobs} /> }
       </SectionPanel>
     </SectionGroup>
   )
