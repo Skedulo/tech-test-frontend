@@ -12,7 +12,6 @@
     "graphql-tag": "^2.10.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-loader-spinner": "^3.1.14",
     "react-scripts": "3.4.1"
   },
   "scripts": {
