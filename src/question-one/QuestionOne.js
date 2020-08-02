@@ -27,7 +27,7 @@ export const QuestionOne = ({ service }) => {
         .finally(() => setIsLoadingJobList(false))
     }
     setSearchedText(updatedSearchedText);
-  });
+  }, []);
 
   return (
     <SectionGroup>

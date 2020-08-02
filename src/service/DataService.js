@@ -43,7 +43,32 @@ export const DataService = {
   //
   getJobs: () => {
     return axiosClient.get('/jobs')
-      .then(result => result.data.map(x => Object.assign({}, x, { id: x.id + '' })))
+      .then(result => result.data)
+      .then(data => {
+        const result = {};
+        data.forEach(resource => result[resource.id] = resource)
+        return result;
+      })
+  },
+  
+  getActivityAllocations: () => {
+    return axiosClient.get('/activityAllocations')
+      .then(result => result.data)
+  },
+
+  getResources: () => {
+    return axiosClient.get('/resources')
+      .then(result => result.data)
+  },
+
+  getJobAllocations: () => {
+    return axiosClient.get('/jobAllocations')
+      .then(result => result.data)
+  },
+  
+  getActivities: () => {
+    return axiosClient.get('/activities')
+      .then(result => result.data)
   },
   
 }
