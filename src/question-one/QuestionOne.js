@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import Loader from "react-loader-spinner";
 
 import { SectionGroup } from '../components/section/SectionGroup'
