@@ -44,11 +44,6 @@ export const DataService = {
   getJobs: () => {
     return axiosClient.get('/jobs')
       .then(result => result.data)
-      .then(data => {
-        const result = {};
-        data.forEach(resource => result[resource.id] = resource)
-        return result;
-      })
   },
   
   getActivityAllocations: () => {

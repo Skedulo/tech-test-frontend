@@ -26,12 +26,15 @@ export const QuestionTwo = ({ service }) => {
     ]).then((result) => {
       console.log(result);
       const [resources, activities, jobAllocations, activityAllocations, jobs] = result;
+      const transformJobs = {};
+      jobs.forEach(job => transformJobs[job.id] = job)
+
       const laneList = [];
       resources.forEach(({name: resourceName, id: resourceId}) => {
         const cards = [];
         jobAllocations.filter(jobAllocation => jobAllocation.resourceId === resourceId)
           .forEach(({jobId}) => {
-            const job = jobs[jobId]
+            const job = transformJobs[jobId]
             cards.push({
               description: job.name,
               start: converDateStrToInt(job.start),
@@ -59,7 +62,7 @@ export const QuestionTwo = ({ service }) => {
   return (
     <SectionGroup>
       <SectionPanel>
-        <Swimlane lanes={lanes} start={converDateStrToInt(RANGE_START)} end={converDateStrToInt(RANGE_END)}/>
+        <Swimlane lanes={lanes} start={RANGE_START.getTime()} end={RANGE_END.getTime()}/>
       </SectionPanel>
     </SectionGroup>
   )

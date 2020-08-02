@@ -1,0 +1,74 @@
+.container {
+    display: flex;
+    flex-flow: column;
+}
+
+.header {
+    height: 50px;
+    background: dodgerblue;
+    color: #ffffff;
+    display: flex;
+    padding: 5px 10px;
+    align-items: center;
+}
+
+.section {
+    display: flex;
+}
+
+.job-list, .content {
+    padding: 10px;
+    background: lightgrey;
+    width: 350px;
+    overflow: auto;
+    height: calc(100vh - 172px);
+}
+
+.job {
+    position: relative;
+    padding: 10px;
+    background: white;
+    margin: 0 0 10px 0;
+}
+
+.job>.title>span {
+    font-weight: bold;
+    font-size: 1rem;
+}
+.job>.location, .job>.date, .job>.duration {
+    font-size: 0.75rem;
+}
+
+.job>.date {
+    margin-top: 10px;
+}
+
+.job>.duration {
+    font-weight: bold;
+}
+
+.job>.num-of-resources {
+    float: right;
+    top: 50%;
+    top: 45%;
+    right: 5%;
+    height: 20px;
+    width: 20px;
+    border: 1px solid dodgerblue;
+    text-align: center;
+    padding: 2%;
+    border-radius: 50%;
+    position: absolute;
+    color: dodgerblue;
+}
+
+.content {
+    background: white;
+    flex-grow: 1;
+}
+
+.content>.box {
+    height: 70px;
+    background: rgb(164, 191, 218);
+    margin: 0 0 15px 0
+}
