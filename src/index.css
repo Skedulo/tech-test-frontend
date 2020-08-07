@@ -11,3 +11,29 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+*{
+  box-sizing: border-box;
+}
+.row{
+  display: flex;
+  margin: 0 -16px;
+}
+[class^="col"]{
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.text-bold{
+  font-weight: bold;
+}
+.text-uppercase{
+  text-transform: uppercase;
+}
+.text-smaller{
+  font-size: 12px;
+}
+p{
+  margin: 0 0 6px 0;
+}
+span, p{
+  line-height: 1.4;
+}

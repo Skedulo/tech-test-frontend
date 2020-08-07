@@ -19,7 +19,8 @@
   width: 120px;
   padding-left: 20px;
   border-right: 1px solid #d4d7de;
-  line-height: 3em;
+  line-height: 3.5em;
+  font-size: 14px;
 }
 
 .swimlane__detail {
@@ -36,4 +37,9 @@
   display: inline-block;
   border: 1px solid #d4d7de;
   box-shadow: 0 1px 6px 0 #d4d7de;
+}
+.swimlane__card.swimlane__card--item{
+  font-size: 12px;
+  line-height: 1.2;
+  padding: 3px 6px;
 }

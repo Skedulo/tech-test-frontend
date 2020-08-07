@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import './App.css'
 
 import { DataService } from './service/DataService'
@@ -12,6 +12,7 @@ const AppTabs = {
   Third: 'three'
 }
 
+
 const AvailableTabs = ({ onSelect, selectedTab }) => {
   return (
     <div className="app__tab-group">
@@ -22,11 +23,11 @@ const AvailableTabs = ({ onSelect, selectedTab }) => {
   )
 }
 
-const Tabs = ({ selectedTab }) => {
+const Tabs = ({ selectedTab, appHeaderHeight }) => {
   switch (selectedTab) {
     case AppTabs.Third:
       return (
-        <QuestionThree service={ DataService } />
+        <QuestionThree service={ DataService } appHeaderHeight={appHeaderHeight}  />
       )
     case AppTabs.Second:
       return (
@@ -48,16 +49,25 @@ function App() {
   const selectTab = (tab) => {
     setSelectedTab(tab)
     localStorage.setItem('selectedTab', tab)
+    
   }
+
+  const [elHeight, setElHeight] = useState('')
+  const elRef = useRef()
+  useEffect(() => {
+    document.onreadystatechange = () => {
+      setElHeight(elRef.current.offsetHeight)
+    }
+  }, [elHeight])
 
   return (
     <div className="app__container">
-      <header className="app__header">
+      <header className="app__header" ref={el => elRef.current = el}>
         <h1 className="app__title">Skedulo Technical Test</h1>
         <AvailableTabs onSelect={selectTab} selectedTab={selectedTab} />
       </header>
       <div className={ selectedTab !== AppTabs.Third ? 'app__content' : 'app__content-blank' }>
-        <Tabs selectedTab={selectedTab} />
+        <Tabs selectedTab={selectedTab} appHeaderHeight={elHeight} />
       </div>
     </div>
   )

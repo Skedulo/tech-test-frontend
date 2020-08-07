@@ -1,0 +1,138 @@
+.outer-container{
+  position: relative;
+  padding-left: 48px;
+}
+.inner-container{
+  display: flex;
+  overflow: auto;
+}
+
+/* Header */
+.inner-header{
+  padding: 16px;
+  background-color: #3D9BFF;
+}
+.inner-header *{
+    color: #FFF;
+}
+.inner-header__title{
+  margin: 0;
+  padding: 0;
+}
+
+/* Left Pane */
+.left-pane{
+  background-color: #E4EEF1;
+  padding: 16px;
+  flex-basis: 33.33%;
+  flex-grow: 1;
+  overflow: auto;
+}
+.left-pane__listing{
+  position: relative;
+}
+.left-pane__item{
+  background-color: #FFF;
+  padding: 16px;
+}
+.left-pane__item + .left-pane__item{
+  margin-top: 16px;
+}
+.left-pane__item--header{
+  display: flex;
+  flex-wrap: wrap;
+}
+.left-pane__item--body{
+  position: relative;
+}
+.left-pane__item--allocated{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #3D9BFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.left-pane__item--allocated span{
+  display: inline-block;
+  margin: 0;
+  color: #3D9BFF;
+}
+.left-pane__item--number{
+  font-size: 14px;
+  color: #8D8D83;
+}
+.left-pane__item--title{
+  margin: 0 0 4px 0;
+  font-size: 16px;
+  padding-right: 8px;
+  color: #223048;
+}
+.left-pane__item--assigned{
+  margin-bottom: 16px;
+  font-size: 12px;
+  color: #8D8D83;
+}
+.left-pane__item--date{
+  margin: 0;
+  color: #8D8D83;
+  font-size: 12px;
+}
+.left-pane__item--time{
+  margin: 0;
+  color: #8D8D83;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+
+/* Right Pane */
+.right-pane{
+  background-color: #FFF;
+  padding: 16px;
+  flex-basis: 66.66%;
+  flex-grow: 1;
+  overflow: auto;
+}
+.description__item{
+  width: 100%;
+  min-height: 150px;
+  background-color: #E4EEF1;
+  padding: 16px;
+}
+.description__item + .description__item{
+  margin-top: 16px;
+}
+
+/* AB Pane */
+.ab-pane{
+  width: 48px;
+  padding: 0 8px;
+  background-color: #223048;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+}
+.ab-pane__head{
+  padding: 8px 0;
+}
+.ab-pane__foot{
+  padding: 8px 0;
+}
+.ab-pane__icon{
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #C4C4C4;
+}
+.ab-pane__icon + .ab-pane__icon{
+  margin-top: 8px;
+}
