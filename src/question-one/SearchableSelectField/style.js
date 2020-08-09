@@ -59,6 +59,7 @@ const SearchableSelectFieldStyle = styled.div`
         border-top: solid 1px ${(props) => props.theme.input.text};
         border-bottom: none;
         cursor: pointer;
+        text-align: left;
         &:nth-last-child(1) {
           border-bottom: solid 0px ${(props) => props.theme.input.text};
           border-bottom-left-radius: 10px;
@@ -66,6 +67,22 @@ const SearchableSelectFieldStyle = styled.div`
         }
         &:hover {
           background-color: ${(props) => props.theme.input.dpActive};
+        }
+
+        .select-info {
+          font-size: 12px;
+          font-weight: 700;
+          opacity: 0.8;
+          display: flex;
+          margin-top: 5px;
+
+          .select-contact {
+            flex: 1;
+          }
+
+          .select-time {
+            margin-top: 5px;
+          }
         }
       }
     }

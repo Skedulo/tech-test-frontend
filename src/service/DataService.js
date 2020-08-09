@@ -14,28 +14,29 @@ export const DataService = {
   //
   //  SAMPLE GraphQL Call
   //
-  // getJobsWithSearchTerm: (searchTerm) => {
-  //   return graphClient.query({
-  //     query: gql`
-  //     query ($searchTerm: String){
-  //       jobs(name: $searchTerm) {
-  //         name,
-  //         start,
-  //         end,
-  //         contact {
-  //           id
-  //           name
-  //         }
-  //       }
-  //     }
-  //     `,
-  //     variables: {
-  //       searchTerm: searchTerm
-  //     }
-  //   })
-  //     .then(result => result.data)
-  //     .then(data => data.jobs)
-  // },
+  getJobsWithSearchTerm: (searchTerm) => {
+    return graphClient.query({
+      query: gql`
+      query ($searchTerm: String){
+        jobs(name: $searchTerm) {
+          id,
+          name,
+          start,
+          end,
+          contact {
+            id
+            name
+          }
+        }
+      }
+      `,
+      variables: {
+        searchTerm: searchTerm
+      }
+    })
+      .then(result => result.data)
+      .then(data => data.jobs)
+  },
 
   //
   //  SAMPLE Normal call

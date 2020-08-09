@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 
 import { SectionGroup } from '../components/section/SectionGroup'
 import { SectionPanel } from '../components/section/SectionPanel'
@@ -8,40 +8,25 @@ import colors from '../style/colors'
 
 import './QuestionOne.css'
 
+import {DataService} from "../service/DataService"
+
 export const QuestionOne = (props) => {
-  const currencies = [
-    {
-      id: '1',
-      name: 'USD',
-    },
-    {
-      id: '2',
-      name: 'EUR',
-    },
-    {
-      id: '3',
-      name: 'BTC',
-    },
-    {
-      id: '4',
-      name: 'JPY',
-    }
-  ];
-  
+  const [jobs, setJobs] =  useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSearch = (event) => {
+    const value = event.target.value;
+    setJobs([]);
+    setSearchTerm(value);
+  }
+
   const form = {
     errors: {
-      required: '',
-      disabled: '',
-      error: 'Incorrect entry.',
-      number: '',
-      withIcon: '',
+      required: ''
     },
     touched: {
-      required: true,
-      disabled: false,
-      error: true,
-      number: true,
-      withIcon: true,
+      required: true
     }
   }
   
@@ -49,19 +34,25 @@ export const QuestionOne = (props) => {
     required: {
       name: 'required',
       value: '1',
-      required: true
-    },
-    disabled: {
-      name: 'disabled',
-      value: '2',
-      required: false
-    },
-    error: {
-      name: 'error',
-      value: '3',
-      required: false
+      required: false,
+      onChange: handleSearch
     }
   }
+
+  const searchJob = () => {
+    if(searchTerm.length > 2) {
+      setIsLoading(true);
+      DataService.getJobsWithSearchTerm(searchTerm.trim())
+      .then((data) => {
+        setJobs(data);
+        setIsLoading(false);
+      });
+    }
+  }
+
+  useEffect(() => {
+    searchJob();
+  }, [searchTerm]);
 
   return (
     <SectionGroup>
@@ -70,11 +61,13 @@ export const QuestionOne = (props) => {
           Please refer to INSTRUCTIONS.md
           <hr style={{width: '200px'}}/>
           <SearchableSelectField
-            label="Required"
+            label="Looking for your job?"
+            placeholder="Try type something more than 2 characters"
             field={fields.required}
-            options={currencies}
+            options={jobs}
             theme={colors.light}
             form={form}
+            isLoading={isLoading}
         />
         </div>
       </SectionPanel>

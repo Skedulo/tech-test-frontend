@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import PropTypes from 'prop-types';
-import { SearchableSelectFieldStyle } from "./style";
+import React, { useState, Suspense } from "react"
+import PropTypes from 'prop-types'
+import { SearchableSelectFieldStyle } from "./style"
 import LabelField from "../LabelField";
+import moment from 'moment';
 
 const SearchableSelectField = (props) => {
   const {
@@ -10,8 +11,10 @@ const SearchableSelectField = (props) => {
     options,
     disabled,
     label,
+    placeholder,
     theme,
-    className
+    className,
+    isLoading,
   } = props;
 
   const { name, value, required } = field;
@@ -31,13 +34,9 @@ const SearchableSelectField = (props) => {
     updateUI(value);
   }
 
-  const handleOptionClicked = (event) => {
-    const value = event.target.innerText;
-    const id = event.target.getAttribute('value');
+  const handleOptionClicked = (value) => {
     updateUI(value);
     setActive(false);
-    // sendEventFormik(id);
-
   }
   const updateUI = (value) => {
     setInputValue(value);
@@ -46,17 +45,18 @@ const SearchableSelectField = (props) => {
       return option.name.toLowerCase().includes(value.toLowerCase())
     });
     setSelectedOptions(selectedList);
+    sendEventFormik(value);
   }
 
-  // const sendEventFormik = (id) => {
-  //     const changeEvent = {
-  //       target: {
-  //         name: name,
-  //         value: id
-  //       }
-  //     };
-  //     field.onChange(changeEvent)
-  //   }
+  const sendEventFormik = (value) => {
+    const changeEvent = {
+      target: {
+        name: name,
+        value: value
+      }
+    };
+    field.onChange(changeEvent)
+  }
   const activeClass = active ? 'active' : '';
   const disabledClass = disabled ? 'disabled' : '';
 
@@ -68,7 +68,7 @@ const SearchableSelectField = (props) => {
       >
         <input
           className="select-input"
-          placeholder={`Select ${label}`}
+          placeholder={placeholder}
           id={name}
           name={name}
           {...field}
@@ -77,31 +77,43 @@ const SearchableSelectField = (props) => {
           onChange={handleInputChanged}
           disabled={disabled}
         />
-        <div className={`${activeClass} select-list`}>
-        {
-          selectedOptions.map((option, index) => {
-            return (
+        { isLoading ? (
+          <div className={`${activeClass} select-list`}>
+            <div className={`${activeClass} select-item no-results`}>
+              Loading...
+            </div>
+          </div>
+        ) : (
+          <div className={`${activeClass} select-list`}>
+          {
+            selectedOptions.map((option, index) => {
+              return (
+                <div 
+                  className={`${activeClass} select-item`}
+                  key={index}
+                  value={option.id}
+                  onClick={() => handleOptionClicked(option.name)}
+                >
+                  {option.name}
+                  <div className="select-info">
+                    <span className="select-contact">{option.contact && option.contact.name}</span>
+                    <span className="select-time">{moment(option.start).format("MMM DD YYYY")} - {moment(option.end).format("MMM DD YYYY")}</span>
+                  </div>
+                </div>
+              )
+            })
+          }
+          {
+            selectedOptions.length === 0 && (
               <div 
-                className={`${activeClass} select-item`}
-                key={index}
-                value={option.id}
-                onClick={handleOptionClicked}
+                className={`${activeClass} select-item no-results`}
               >
-                {option.name}
+                No matches found
               </div>
             )
-          })
-        }
-        {
-          selectedOptions.length === 0 && (
-            <div 
-              className={`${activeClass} select-item no-results`}
-            >
-              No matches found
-            </div>
-          )
-        }
-        </div>
+          }
+          </div>
+        )} 
       </div>
       <LabelField
         name={name}
@@ -121,14 +133,18 @@ SearchableSelectField.propTypes = {
   form: PropTypes.object.isRequired,
   options: PropTypes.array,
   disabled: PropTypes.bool,
+  isLoading: PropTypes.bool,
   label: PropTypes.string,
+  placeholder: PropTypes.string,
   theme: PropTypes.object,
 }
 
 SearchableSelectField.defaultProps = {
   options: [],
   disabled: false,
+  isLoading: false,
   label: '',
+  placeholder: '',
   theme: {}
 }
 
