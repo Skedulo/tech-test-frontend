@@ -1,0 +1,9 @@
+.swimlane__card__hover:hover {
+    width: 200px !important;
+    overflow: scroll;
+    background-color: white;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
