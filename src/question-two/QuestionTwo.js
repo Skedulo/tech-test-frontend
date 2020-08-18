@@ -8,8 +8,6 @@ import './QuestionTwo.css';
 import {DataService} from "../service/DataService"
 import { Swimlane } from "../components/swimlane/Swimlane"
 
-var _ = require('underscore');
-
 /**
  * Please do not change these dates, the data on the server all fall within the 01/09/2018
  */

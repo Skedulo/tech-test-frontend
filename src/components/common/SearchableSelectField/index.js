@@ -1,4 +1,4 @@
-import React, { useState, Suspense } from "react"
+import React, { useState } from "react"
 import PropTypes from 'prop-types'
 import { SearchableSelectFieldStyle } from "./style"
 import LabelField from "../LabelField";
