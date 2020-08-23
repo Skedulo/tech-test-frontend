@@ -8,6 +8,7 @@ export class JobFeed extends React.Component {
     super(props);
     this.state = {
       searchResult: [],
+      loading: false,
     };
   }
 
@@ -16,6 +17,7 @@ export class JobFeed extends React.Component {
     if (prevProps.search.searchTerm !== currentSearchTerm) {
       let searchResult = [];
       if (currentSearchTerm.length >= 3) {
+        this.setState({ loading: true });
         try {
           searchResult = await DataService.searchJobsByName(currentSearchTerm);
         } catch (e) {
@@ -25,21 +27,24 @@ export class JobFeed extends React.Component {
       } else {
         searchResult = [];
       }
-      this.setState({ searchResult });
+      //delay display of loading for 300ms to make it more obvious
+      setTimeout(() => this.setState({ searchResult, loading: false }), 300);
     }
   }
 
   render() {
     return (
       <div>
-        {this.state.searchResult.map((res, index) => (
-          <div index={index}>
-            <div>{res.name}</div>
-            <div>{res.start}</div>
-            <div>{res.end}</div>
-            <div>{res.contactName}</div>
-          </div>
-        ))}
+        {this.state.loading
+          ? "Loading..."
+          : this.state.searchResult.map((res, index) => (
+              <div index={index}>
+                <div>{res.name}</div>
+                <div>{res.start}</div>
+                <div>{res.end}</div>
+                <div>{res.contactName}</div>
+              </div>
+            ))}
       </div>
     );
   }
