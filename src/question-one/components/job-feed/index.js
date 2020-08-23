@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 
 import { DataService } from "../../../service/DataService";
 
+import "./index.scss";
+
 export class JobFeed extends React.Component {
   constructor(props) {
     super(props);
@@ -13,17 +15,12 @@ export class JobFeed extends React.Component {
   }
 
   async componentDidUpdate(prevProps) {
-    const currentSearchTerm = this.props.search.searchTerm;
-    if (prevProps.search.searchTerm !== currentSearchTerm) {
+    const searchTerm = this.props.search.searchTerm;
+    if (prevProps.search.searchTerm !== searchTerm) {
       let searchResult = [];
-      if (currentSearchTerm.length >= 3) {
+      if (searchTerm.length >= 3) {
         this.setState({ loading: true });
-        try {
-          searchResult = await DataService.searchJobsByName(currentSearchTerm);
-        } catch (e) {
-          // alert('failed to fetch from axois client')
-          searchResult = [];
-        }
+        searchResult = DataService.searchJobsByName(searchTerm);
       } else {
         searchResult = [];
       }
@@ -34,15 +31,16 @@ export class JobFeed extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="feed">
         {this.state.loading
           ? "Loading..."
-          : this.state.searchResult.map((res, index) => (
-              <div index={index}>
-                <div>{res.name}</div>
-                <div>{res.start}</div>
-                <div>{res.end}</div>
-                <div>{res.contactName}</div>
+          : this.state.searchResult.map((job, index) => (
+              <div index={index} className="feed__row">
+                <span>{job.name}</span>
+                <span>
+                  from {job.start} to {job.end}
+                </span>
+                <span>{job.contactName}</span>
               </div>
             ))}
       </div>

@@ -1,0 +1,15 @@
+.feed {
+  margin: 10px;
+  &__row {
+    padding: 5px;
+    span {
+      padding: 2px;
+      &:first-child {
+        border-right: 1px solid black;
+      }
+      &:last-child {
+        border-left: 1px solid black;
+      }
+    }
+  }
+}

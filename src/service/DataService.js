@@ -1,8 +1,12 @@
 import Axios from "axios";
+import { cacheData } from "./Cache";
 
 const axiosClient = Axios.create({
   baseURL: "http://localhost:3400",
 });
+
+let jobsCache,
+  contactsCache = [];
 
 export const DataService = {
   getJobs: () =>
@@ -18,28 +22,14 @@ export const DataService = {
         result.data.map((x) => Object.assign({}, x, { id: x.id + "" }))
       ),
   searchJobsByName: function (searchTerm) {
-    return this.getJobs().then((result) =>
-      result.filter((x, index) => {
-        result[index].contactName =
-          contactsCaching[result[index].contactId].name;
-        return x.name.toUpperCase().includes(searchTerm.toUpperCase());
-      })
+    const searchResult = jobsCache.filter((x) =>
+      x.name.toUpperCase().includes(searchTerm.toUpperCase())
     );
+    return searchResult;
   },
-  // searchJobsByName: (searchTerm) =>
-  //   axiosClient
-  //     .get("/jobs")
-  //     .then((result) =>
-  //       result.data
-  //         .map((x) => Object.assign({}, x, { id: x.id + "" }))
-  //         .filter((x) =>
-  //           x.name.toUpperCase().includes(searchTerm.toUpperCase())
-  //         )
-  //     ),
 };
 
-//global caching
-let contactsCaching;
-DataService.getContacts().then((res) => {
-  contactsCaching = res;
+// globally caching jobs and contacts data to avoid making request to server again and again
+cacheData().then((res) => {
+  jobsCache = res.jobsCache;
 });
