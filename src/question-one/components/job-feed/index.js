@@ -11,16 +11,16 @@ export class JobFeed extends React.Component {
     };
   }
 
-  async componentDidUpdate(prevProps, prevState) {
-    if (prevProps.search.searchTerm !== this.props.search.searchTerm) {
+  async componentDidUpdate(prevProps) {
+    const currentSearchTerm = this.props.search.searchTerm;
+    if (prevProps.search.searchTerm !== currentSearchTerm) {
       let searchResult = [];
-      if (this.props.search.searchTerm.length >= 3) {
+      if (currentSearchTerm.length >= 3) {
         try {
-          searchResult = await DataService.searchJobsByName(
-            this.props.search.searchTerm
-          );
+          searchResult = await DataService.searchJobsByName(currentSearchTerm);
         } catch (e) {
-          console.log(e);
+          // alert('failed to fetch from axois client')
+          searchResult = [];
         }
       } else {
         searchResult = [];

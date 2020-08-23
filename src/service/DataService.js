@@ -5,17 +5,27 @@ const axiosClient = Axios.create({
 });
 
 export const DataService = {
-  getJobs: () => {
-    return axiosClient
+  getJobs: () =>
+    axiosClient
       .get("/jobs")
       .then((result) =>
         result.data.map((x) => Object.assign({}, x, { id: x.id + "" }))
-      );
-  },
-  searchJobsByName: async function (searchTerm) {
-    const jobList = await this.getJobs();
-    return jobList.filter((x) =>
-      x.name.toUpperCase().includes(searchTerm.toUpperCase())
+      ),
+  searchJobsByName: function (searchTerm) {
+    return this.getJobs().then((result) =>
+      result.filter((x) =>
+        x.name.toUpperCase().includes(searchTerm.toUpperCase())
+      )
     );
   },
+  // searchJobsByName: (searchTerm) =>
+  //   axiosClient
+  //     .get("/jobs")
+  //     .then((result) =>
+  //       result.data
+  //         .map((x) => Object.assign({}, x, { id: x.id + "" }))
+  //         .filter((x) =>
+  //           x.name.toUpperCase().includes(searchTerm.toUpperCase())
+  //         )
+  //     ),
 };
