@@ -1,8 +1,10 @@
 import { DataService } from "./DataService";
 
-export const cacheData = async () => {
-  let jobsCache,
-    contactsCache = [];
+// globally caching jobs and contacts data to avoid making request to server again and again
+let jobsCache,
+  contactsCache = [];
+
+const cacheData = async () => {
   try {
     jobsCache = await DataService.getJobs();
     contactsCache = await DataService.getContacts();
@@ -15,5 +17,8 @@ export const cacheData = async () => {
   } catch (e) {
     alert("failed to fetch jobs or contacts from axois client");
   }
-  return { jobsCache, contactsCache };
 };
+
+cacheData();
+
+export { jobsCache, contactsCache };

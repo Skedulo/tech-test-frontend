@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { DataService } from "../../../service/DataService";
+import { jobsCache } from "../../../service/Cache";
 
 import "./index.scss";
 
@@ -20,13 +20,21 @@ export class JobFeed extends React.Component {
       let searchResult = [];
       if (searchTerm.length >= 3) {
         this.setState({ loading: true });
-        searchResult = DataService.searchJobsByName(searchTerm);
+        searchResult = this.searchJobsByName(searchTerm);
       } else {
         searchResult = [];
       }
       //delay display of loading for 300ms to make it more obvious
       setTimeout(() => this.setState({ searchResult, loading: false }), 300);
     }
+  }
+
+  searchJobsByName(searchTerm) {
+    const searchResult = jobsCache.filter((job) =>
+      //assume using case insensitive search
+      job.name.toUpperCase().includes(searchTerm.toUpperCase())
+    );
+    return searchResult;
   }
 
   render() {
