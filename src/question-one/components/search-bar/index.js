@@ -13,4 +13,4 @@ function SearchBar(props) {
   );
 }
 
-export default connect(() => {}, { setSearchTerm })(SearchBar);
+export default connect(() => ({}), { setSearchTerm })(SearchBar);
