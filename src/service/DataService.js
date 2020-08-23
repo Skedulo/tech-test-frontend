@@ -11,11 +11,19 @@ export const DataService = {
       .then((result) =>
         result.data.map((x) => Object.assign({}, x, { id: x.id + "" }))
       ),
+  getContacts: () =>
+    axiosClient
+      .get("/contacts")
+      .then((result) =>
+        result.data.map((x) => Object.assign({}, x, { id: x.id + "" }))
+      ),
   searchJobsByName: function (searchTerm) {
     return this.getJobs().then((result) =>
-      result.filter((x) =>
-        x.name.toUpperCase().includes(searchTerm.toUpperCase())
-      )
+      result.filter((x, index) => {
+        result[index].contactName =
+          contactsCaching[result[index].contactId].name;
+        return x.name.toUpperCase().includes(searchTerm.toUpperCase());
+      })
     );
   },
   // searchJobsByName: (searchTerm) =>
@@ -29,3 +37,9 @@ export const DataService = {
   //         )
   //     ),
 };
+
+//global caching
+let contactsCaching;
+DataService.getContacts().then((res) => {
+  contactsCaching = res;
+});

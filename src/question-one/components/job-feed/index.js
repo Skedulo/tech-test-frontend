@@ -37,7 +37,7 @@ export class JobFeed extends React.Component {
             <div>{res.name}</div>
             <div>{res.start}</div>
             <div>{res.end}</div>
-            <div>{res.contactId}</div>
+            <div>{res.contactName}</div>
           </div>
         ))}
       </div>
