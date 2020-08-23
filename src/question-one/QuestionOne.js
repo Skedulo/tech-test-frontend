@@ -1,16 +1,23 @@
-import React from 'react';
+import React from "react";
+import { Provider } from "react-redux";
+import store from "./redux/store.js";
 
-import { SectionGroup } from '../components/section/SectionGroup'
-import { SectionPanel } from '../components/section/SectionPanel'
+import { SectionGroup } from "../components/section/SectionGroup";
+import { SectionPanel } from "../components/section/SectionPanel";
+import SearchBar from "./components/search-bar";
+import JobFeed from "./components/job-feed/";
 
-import './QuestionOne.css'
+import "./QuestionOne.css";
 
 export const QuestionOne = (props) => {
   return (
-    <SectionGroup>
-      <SectionPanel>
-        Please refer to INSTRUCTIONS.md
-      </SectionPanel>
-    </SectionGroup>
-  )
-}
+    <Provider store={store}>
+      <SectionGroup>
+        <SectionPanel>
+          <SearchBar />
+          <JobFeed />
+        </SectionPanel>
+      </SectionGroup>
+    </Provider>
+  );
+};
