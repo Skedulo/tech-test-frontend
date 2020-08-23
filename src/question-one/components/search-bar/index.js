@@ -8,6 +8,7 @@ function SearchBar(props) {
         onChange={(e) => {
           props.setSearchTerm(e.target.value);
         }}
+        placeholder="Type in a job name"
       />
     </div>
   );
