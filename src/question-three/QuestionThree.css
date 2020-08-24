@@ -1,6 +1,6 @@
 .app__content-blank {
-  height: calc(100vh - 132px)
+  height: calc(100vh - 162px)
 }
-.section__panel {
+.section__group, .section__panel {
   height: 100%;
 }

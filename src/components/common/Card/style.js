@@ -1,44 +1,55 @@
 import styled from 'styled-components';
 
 const CardStyle = styled.div`
-  .swimlane__container {
-    min-width: 800px;
+  position: relative;
+  height: 90px;
+  margin: 20px;
+  padding: 20px;
+  background: ${props => props.color.card.bg};
+  .card-header {
+    .card-header-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-right: 5px;
+      color: ${props => props.color.card.headerText};
+    }
+    .card-header-desc {
+      font-size: 16px;
+      color: ${props => props.color.card.lightText};
+    }
   }
-
-  .swimlane__lane {
-    height: 50px;
-    width:100%;
-    display: flex;
-    flex-direction: row;
-    border: 1px solid #d4d7de;
-    border-bottom-width: 0;
+  .card-sub-header {
+    font-size: 16px;
+    color: ${props => props.color.card.lightText};
   }
-
-  .swimlane__lane:last-child {
-    border-bottom-width: 1px;
-  }
-
-  .swimlane__title {
-    width: 120px;
-    padding-left: 20px;
-    border-right: 1px solid #d4d7de;
-    line-height: 3em;
-  }
-
-  .swimlane__detail {
-    flex-grow: 1;
-    padding: 7px 0;
-    position: relative;
-  }
-
-  .swimlane__card {
+  .card-footer {
+    display: grid;
     position: absolute;
-    top: 7px;
-    bottom: 7px;
-    overflow: hidden;
-    display: inline-block;
-    border: 1px solid #d4d7de;
-    box-shadow: 0 1px 6px 0 #d4d7de;
+    bottom: 20px;
+    font-size: 16px;
+    .card-footer-title {
+      font-weight: bold;
+      color: ${props => props.color.card.boldText};
+    }
+    .card-footer-desc {
+      color: ${props => props.color.card.lightText};
+    }
+  }
+  .card-counter {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    height: 36px;
+    width: 36px;
+    font-size: 14px;
+    border-radius: 50%;
+    border: 2px solid ${props => props.color.card.counter};
+    color: ${props => props.color.card.counter};
+    font-weight: bold;
+    display: flex;
+    span {
+      margin: auto;
+    }
   }
 `;
 

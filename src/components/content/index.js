@@ -7,9 +7,8 @@ function Content(props) {
     <ContentStyle
       color={color}
     >
-      <div className="child-component">
-        { props.children }
-      </div>
+      { props.left }
+      { props.right }
     </ContentStyle>
   );
 }

@@ -1,21 +1,18 @@
 import styled from 'styled-components';
 
 const BoxListStyle = styled.div`
-  width: calc(60% - 50px);
-  height: 80px;
-  margin-left: 50px;
+  width: 60%;
+  height: 100%;
   top: 0;
   left: 0;
-  background: ${props => props.color.header.bg};
-  .child-component {
-    color: ${props => props.color.header.text};
-    margin-left: 17px;
-    font-size: 26px;
+  background: ${props => props.color.bg};
+  .box-list {
     height: 100%;
-    display: flex;
-    span {
-      margin-top: auto;
-      margin-bottom: auto;
+    overflow-y: scroll;
+    .box {
+      height: 150px;
+      margin: 20px;
+      background: ${props => props.color.secondBg}
     }
   }
 `;
