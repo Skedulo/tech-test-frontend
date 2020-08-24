@@ -66,9 +66,9 @@ export class QuestionTwo extends React.Component {
     resources.forEach((resource) => {
       resource.jobsInfo = [];
       const resourceId = resource.id;
-      for (const jobAllocation of jobAllocations) {
-        if (Number(jobAllocation.resourceId) === Number(resourceId)) {
-          resource.jobsInfo.push(jobs[jobAllocation.jobId]);
+      for (const allocation of jobAllocations) {
+        if (Number(allocation.resourceId) === Number(resourceId)) {
+          resource.jobsInfo.push(jobs[allocation.jobId]);
         }
       }
     });
@@ -79,11 +79,9 @@ export class QuestionTwo extends React.Component {
     resources.forEach((resource) => {
       resource.activitiesInfo = [];
       const resourceId = resource.id;
-      for (const activityAllocation of activityAllocations) {
-        if (Number(activityAllocation.resourceId) === Number(resourceId)) {
-          resource.activitiesInfo.push(
-            activities[activityAllocation.activityId]
-          );
+      for (const allocation of activityAllocations) {
+        if (Number(allocation.resourceId) === Number(resourceId)) {
+          resource.activitiesInfo.push(activities[allocation.activityId]);
         }
       }
     });
