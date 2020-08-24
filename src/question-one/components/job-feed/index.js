@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { jobsCache } from "../../../service/Cache";
+import { DataService } from "../../../service/DataService";
 
 import "./index.scss";
 
@@ -15,6 +15,20 @@ export class JobFeed extends React.Component {
   }
 
   async componentDidUpdate(prevProps) {
+    try {
+      this.jobs = await DataService.getJobs();
+      this.contacts = await DataService.getContacts();
+    } catch (e) {
+      alert("failed to fetch data from axois client");
+    }
+
+    // integrate jobs and contacts JSON data to match requirement of display format
+    this.jobs.forEach((job) => {
+      job.contactName = this.contacts[job.contactId]
+        ? this.contacts[job.contactId].name
+        : "";
+    });
+
     const searchTerm = this.props.search.searchTerm;
     if (prevProps.search.searchTerm !== searchTerm) {
       let searchResult = [];
@@ -24,13 +38,14 @@ export class JobFeed extends React.Component {
       } else {
         searchResult = [];
       }
+
       //delay display of loading for 300ms to make it more obvious
       setTimeout(() => this.setState({ searchResult, loading: false }), 300);
     }
   }
 
   searchJobsByName(searchTerm) {
-    const searchResult = jobsCache.filter((job) =>
+    const searchResult = this.jobs.filter((job) =>
       //assume using case insensitive search
       job.name.toUpperCase().includes(searchTerm.toUpperCase())
     );
