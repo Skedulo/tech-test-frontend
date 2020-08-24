@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { setSearchTerm } from "../../redux/action";
+import { setSearchTerm } from "../../question-one/redux/action";
 function SearchBar(props) {
   return (
     <div>

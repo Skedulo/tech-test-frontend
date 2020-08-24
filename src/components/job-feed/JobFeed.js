@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { DataService } from "../../../service/DataService";
+import { DataService } from "../../service/DataService";
 
-import "./index.scss";
+import "./JobFeed.scss";
 
 export class JobFeed extends React.Component {
   constructor(props) {
