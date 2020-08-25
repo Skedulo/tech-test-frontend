@@ -1,14 +1,18 @@
 .board {
   display: flex;
   align-self: stretch;
+
   &__content {
     display: flex;
+
     &--left {
-      height: 600px;
       flex: 1;
+
+      height: 600px;
       overflow: scroll;
       background-color: #e4eef1;
     }
+
     &--right {
       flex: 2;
     }
