@@ -14,3 +14,11 @@ export const displayDateAndTime = (date) => {
   var mm = ("0" + dt.getMinutes()).slice(-2);
   return YYYY + "-" + MM + "-" + DD + " " + hh + ":" + mm;
 };
+
+export const displayDate = (date) => {
+  var dt = new Date(date);
+  var DD = ("0" + dt.getDate()).slice(-2);
+  var MM = ("0" + (dt.getMonth() + 1)).slice(-2);
+  var YYYY = dt.getFullYear();
+  return YYYY + "-" + MM + "-" + DD;
+};

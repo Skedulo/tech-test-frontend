@@ -1,6 +1,6 @@
 import React from "react";
 
-import { displayTimeWithoutSec } from "../../utils/data-formatter";
+import { displayTimeWithoutSec, displayDate } from "../../utils/data-formatter";
 import "./Card.scss";
 
 function Card(props) {
@@ -16,7 +16,7 @@ function Card(props) {
           <span>{location}</span>
         </div>
         <div className="card__content--time">
-          <div>date</div>
+          <div>{displayDate(start)}</div>
           <div>
             {displayTimeWithoutSec(start)}-{displayTimeWithoutSec(end)}
           </div>
