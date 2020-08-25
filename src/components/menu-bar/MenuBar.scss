@@ -1,0 +1,19 @@
+.menu-bar {
+  width: 40px;
+  height: calc(100vh - 125px);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  background-color: #223048;
+
+  &__icon {
+    width: 30px;
+    height: 30px;
+    margin: 10px auto;
+
+    border-radius: 50%;
+    background-color: #c4c4c4;
+  }
+}

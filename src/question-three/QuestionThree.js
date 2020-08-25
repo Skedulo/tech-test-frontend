@@ -2,10 +2,13 @@ import React from "react";
 
 import { SectionGroup } from "../components/section/SectionGroup";
 import { SectionPanel } from "../components/section/SectionPanel";
+import Header from "../components/header/Header";
+import MenuBar from "../components/menu-bar/MenuBar";
+import Card from "../components/card/Card";
 
 import { DataService } from "../service/DataService";
 
-import "./QuestionThree.css";
+import "./QuestionThree.scss";
 
 export class QuestionThree extends React.Component {
   constructor() {
@@ -41,7 +44,22 @@ export class QuestionThree extends React.Component {
   render() {
     return (
       <SectionGroup>
-        <SectionPanel></SectionPanel>
+        <SectionPanel>
+          <div className="board">
+            <MenuBar />
+            <div>
+              <Header />
+              <div className="board__content">
+                <div className="board__content--left">
+                  {this.state.jobs.map((job) => {
+                    return <Card {...job} />;
+                  })}
+                </div>
+                <div className="board__content--right"></div>
+              </div>
+            </div>
+          </div>
+        </SectionPanel>
       </SectionGroup>
     );
   }

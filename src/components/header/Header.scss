@@ -1,0 +1,16 @@
+.header {
+  height: 80px;
+  width: calc(100vw - 40px);
+
+  vertical-align: center;
+  display: flex;
+  align-items: center;
+  color: white;
+  background-color: #3d9bff;
+
+  header {
+    vertical-align: center;
+    font-size: 20px;
+    margin-left: 10px;
+  }
+}
