@@ -3,7 +3,7 @@ import React from "react";
 import {
   displayTimeWithoutSec,
   displayDate,
-} from "../../../utils/data-formatter";
+} from "../../../utils/date-formatter";
 import "./Card.scss";
 
 function Card(props) {

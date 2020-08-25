@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { displayDateAndTime } from "../../../utils/data-formatter";
+import { displayDateAndTime } from "../../../utils/date-formatter";
 import { DataService } from "../../../service/DataService";
 
 import "./JobFeed.scss";
