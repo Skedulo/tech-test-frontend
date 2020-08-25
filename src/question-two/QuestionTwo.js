@@ -5,6 +5,10 @@ import { SectionPanel } from "../components/section/SectionPanel";
 
 import { Swimlane } from "../components/swimlane/Swimlane";
 
+import {
+  integrateJobsIntoResources,
+  integrateActivitiesIntoResources,
+} from "../utils/data-integrater";
 import { DataService } from "../service/DataService";
 
 /**
@@ -22,17 +26,23 @@ export class QuestionTwo extends React.Component {
   }
 
   async componentDidMount() {
+    let jobs, activities, resources, jobAllocations, activityAllocations;
     try {
-      this.jobs = await DataService.getJobs();
-      this.activities = await DataService.getActivities();
-      this.resources = await DataService.getResources();
-      this.jobAllocations = await DataService.getJobAllocations();
-      this.activityAllocations = await DataService.getActivityAllocations();
+      jobs = await DataService.getJobs();
+      activities = await DataService.getActivities();
+      resources = await DataService.getResources();
+      jobAllocations = await DataService.getJobAllocations();
+      activityAllocations = await DataService.getActivityAllocations();
     } catch (e) {
       alert("failed to fetch data from axois client");
     }
-    this.integrateJobsIntoResources();
-    this.integrateActivitiesIntoResources();
+    integrateJobsIntoResources(jobs, jobAllocations, resources);
+    integrateActivitiesIntoResources(
+      activities,
+      activityAllocations,
+      resources
+    );
+    this.resources = resources;
     this.generateLanes();
   }
 
@@ -59,32 +69,6 @@ export class QuestionTwo extends React.Component {
     });
     this.setState({ lanes });
   };
-
-  integrateJobsIntoResources() {
-    const { resources, jobs, jobAllocations } = this;
-    resources.forEach((resource) => {
-      resource.jobsInfo = [];
-      const resourceId = resource.id;
-      for (const allocation of jobAllocations) {
-        if (Number(allocation.resourceId) === Number(resourceId)) {
-          resource.jobsInfo.push(jobs[allocation.jobId]);
-        }
-      }
-    });
-  }
-
-  integrateActivitiesIntoResources() {
-    const { resources, activities, activityAllocations } = this;
-    resources.forEach((resource) => {
-      resource.activitiesInfo = [];
-      const resourceId = resource.id;
-      for (const allocation of activityAllocations) {
-        if (Number(allocation.resourceId) === Number(resourceId)) {
-          resource.activitiesInfo.push(activities[allocation.activityId]);
-        }
-      }
-    });
-  }
 
   render() {
     return (

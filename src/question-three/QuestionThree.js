@@ -7,6 +7,7 @@ import MenuBar from "./components/menu-bar/MenuBar";
 import Card from "./components/card/Card";
 
 import { DataService } from "../service/DataService";
+import { integrateJobsAllocationIntoJobs } from "../utils/data-integrater";
 
 import "./QuestionThree.scss";
 
@@ -19,26 +20,15 @@ export class QuestionThree extends React.Component {
   }
 
   async componentDidMount() {
+    let jobs, jobAllocations;
     try {
-      this.jobs = await DataService.getJobs();
-      this.jobAllocations = await DataService.getJobAllocations();
+      jobs = await DataService.getJobs();
+      jobAllocations = await DataService.getJobAllocations();
     } catch (e) {
       alert("failed to fetch data from axois client");
     }
-    this.integrateJobsAllocationIntoJobs();
-  }
-
-  integrateJobsAllocationIntoJobs() {
-    const { jobAllocations, jobs } = this;
-    jobs.forEach((job) => {
-      job.numOfAllocations = 0;
-      for (const jobAllocation of jobAllocations) {
-        if (Number(job.id) === Number(jobAllocation.jobId)) {
-          job.numOfAllocations++;
-        }
-      }
-    });
-    this.setState({ jobs });
+    integrateJobsAllocationIntoJobs(jobAllocations, jobs);
+    this.setState({ jobs: jobs });
   }
 
   render() {
