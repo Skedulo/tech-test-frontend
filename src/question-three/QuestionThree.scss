@@ -5,12 +5,12 @@
     display: flex;
     &--left {
       height: 600px;
-      flex-grow: 1;
+      flex: 1;
       overflow: scroll;
       background-color: #e4eef1;
     }
     &--right {
-      flex-grow: 2;
+      flex: 2;
     }
   }
 }

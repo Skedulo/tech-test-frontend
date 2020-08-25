@@ -1,6 +1,58 @@
 .card {
-  height: 150px;
-  margin: 20px;
-
+  position: relative;
+  height: 120px;
+  margin: 15px;
+  padding: 15px;
   background-color: white;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    margin: 5px;
+    height: 100%;
+    font-size: 15px;
+    font-weight: 500;
+
+    color: #8d8383;
+
+    h3 {
+      margin: 0px;
+      color: black;
+      & span {
+        margin: 5px;
+        color: #8d8383;
+      }
+    }
+
+    &--time {
+      :last-child {
+        font-weight: 700;
+      }
+    }
+  }
+
+  &__circle {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+    margin: 10px;
+
+    border-radius: 50% 50%;
+    border: #3d9bef 2px solid;
+
+    &--element {
+      text-align: center;
+
+      color: #3d9bef;
+      font-weight: 500;
+    }
+  }
 }
