@@ -1,6 +1,9 @@
 import React from "react";
 
-import { displayTimeWithoutSec, displayDate } from "../../utils/data-formatter";
+import {
+  displayTimeWithoutSec,
+  displayDate,
+} from "../../../utils/data-formatter";
 import "./Card.scss";
 
 function Card(props) {

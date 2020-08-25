@@ -2,9 +2,9 @@ import React from "react";
 
 import { SectionGroup } from "../components/section/SectionGroup";
 import { SectionPanel } from "../components/section/SectionPanel";
-import Header from "../components/header/Header";
-import MenuBar from "../components/menu-bar/MenuBar";
-import Card from "../components/card/Card";
+import Header from "./components/header/Header";
+import MenuBar from "./components/menu-bar/MenuBar";
+import Card from "./components/card/Card";
 
 import { DataService } from "../service/DataService";
 
