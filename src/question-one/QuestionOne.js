@@ -7,8 +7,6 @@ import { SectionPanel } from "../components/section/SectionPanel";
 import SearchBar from "../components/search-bar/SearchBar";
 import JobFeed from "../components/job-feed/JobFeed";
 
-import "./QuestionOne.css";
-
 export const QuestionOne = (props) => {
   return (
     <Provider store={store}>
