@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
+import { displayDateAndTime } from "../../utils/data-formatter";
 import { DataService } from "../../service/DataService";
 
 import "./JobFeed.scss";
@@ -61,7 +62,9 @@ export class JobFeed extends React.Component {
               <div index={index} className="feed__row">
                 <span>{job.name}</span>
                 <span>
-                  from {job.start} to {job.end}
+                  {`from ${displayDateAndTime(
+                    job.start
+                  )} to ${displayDateAndTime(job.end)} `}
                 </span>
                 <span>{job.contactName}</span>
               </div>

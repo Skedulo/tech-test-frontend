@@ -1,6 +1,6 @@
 import React from "react";
 
-import { displayDateWithoutSec } from "../../utils/data-formatter";
+import { displayTimeWithoutSec } from "../../utils/data-formatter";
 import "./Card.scss";
 
 function Card(props) {
@@ -9,7 +9,7 @@ function Card(props) {
     <div className="card">
       <h3>{name}</h3>
       <div>
-        {displayDateWithoutSec(start)}-{displayDateWithoutSec(end)}
+        {displayTimeWithoutSec(start)}-{displayTimeWithoutSec(end)}
         {location}
         {`(Job #${id})`}
         {numOfAllocations}
