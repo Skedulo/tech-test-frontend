@@ -1,3 +1,13 @@
+// integrate different JSON data sources to match requirement of display format of data
+
+export const integrateContactsIntoJobs = (contacts, jobs) => {
+  jobs.forEach((job) => {
+    job.contactName = contacts[job.contactId]
+      ? contacts[job.contactId].name
+      : "";
+  });
+};
+
 export const integrateJobsIntoResources = (jobs, jobAllocations, resources) => {
   resources.forEach((resource) => {
     resource.jobsInfo = [];

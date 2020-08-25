@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import { displayDateAndTime } from "../../../utils/date-formatter";
+import { integrateContactsIntoJobs } from "../../../utils/data-integrater";
 import { DataService } from "../../../service/DataService";
 
 import "./JobFeed.scss";
@@ -16,19 +17,16 @@ export class JobFeed extends React.Component {
   }
 
   async componentDidUpdate(prevProps) {
+    let jobs, contacts;
     try {
-      this.jobs = await DataService.getJobs();
-      this.contacts = await DataService.getContacts();
+      jobs = await DataService.getJobs();
+      contacts = await DataService.getContacts();
     } catch (e) {
       alert("failed to fetch data from axois client");
     }
 
-    // integrate jobs and contacts JSON data to match requirement of display format
-    this.jobs.forEach((job) => {
-      job.contactName = this.contacts[job.contactId]
-        ? this.contacts[job.contactId].name
-        : "";
-    });
+    integrateContactsIntoJobs(contacts, jobs);
+    this.jobs = jobs;
 
     const searchTerm = this.props.search.searchTerm;
     if (prevProps.search.searchTerm !== searchTerm) {
