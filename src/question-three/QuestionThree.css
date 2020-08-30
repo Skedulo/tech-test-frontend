@@ -1,0 +1,92 @@
+.q3-header {
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    height: calc(10vh);
+    background-color: #3D9BFF;
+    color: #FFFFFF;
+    box-shadow: 0 0 4px 0 rgba(40,60,80,0.16);
+    padding-top: 36px;
+    padding-left: 18px;
+}
+
+.q3-container {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    height: calc(90vh - 210px);
+}
+
+.q3-job-menu {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 300px;
+    padding: 12px 0;
+    border-radius: 0 0 0 4px;
+    background-color: #E4EEF1;
+    box-sizing: border-box;
+    overflow-x: auto;
+}
+
+.q3-job-details {
+    display: block;
+    position: absolute;
+    background-color: #FFFFFF;
+    top: 0;
+    left: 300px;
+    right: 0;
+    bottom: 0;
+    overflow-x: auto;
+}
+
+.q3-job-block {
+    background-color: #FFFFFF;
+    margin: 10px;
+    height: 120px;
+    padding: 10px;
+    color: #8D8383;
+    font-size: 14px;
+    position: relative;
+}
+
+.q3-right-block {
+    background-color: #E4EEF1;
+    margin: 20px;
+    height: 180px;
+    padding: 5px;
+    color: #C4C4C4;
+    font-size: 14px;
+    position: relative;
+}
+
+.q3-job-datetime {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+
+.q3-job-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #223048;
+}
+
+.q3-job-time {
+    font-weight: bold;
+}
+
+.q3-job-allocations {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid #3D9BFF;
+    width: 30px;
+    line-height: 30px;
+    height: 30px;
+    bottom: 10px;
+    right: 10px;
+    text-align: center;
+}
