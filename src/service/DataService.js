@@ -44,5 +44,37 @@ export const DataService = {
   //   return axiosClient.get('/jobs')
   //     .then(result => result.data.map(x => Object.assign({}, x, { id: x.id + '' })))
   // },
-  
+
+    getJobsWithSearchTerm: (search) => {
+        let http_request = search ? '/jobs?q=' + search : '/jobs';
+        return axiosClient.get(http_request)
+            .then(result => result.data.map(x => Object.assign({}, x, { id: x.id + '' })))
+    },
+
+    getJobs: (search) => {
+        return axiosClient.get('/jobs')
+            .then(result => result.data.map(x => Object.assign({}, x, { id: x.id + '' })))
+    },
+
+    getContacts: () => {
+        return axiosClient.get('/contacts')
+            .then(result => result.data.map(x => Object.assign({}, x, { id: x.id + '' })))
+    },
+
+    getResources: () => {
+        return axiosClient.get('/resources')
+            .then(result => result.data.map(x => Object.assign({}, x, { id: x.id + '' })))
+    },
+    getActivities: () => {
+        return axiosClient.get('/activities')
+            .then(result => result.data.map(x => Object.assign({}, x, { id: x.id + '' })))
+    },
+    getJobAllocations: () => {
+        return axiosClient.get('/jobAllocations')
+            .then(result => result.data.map(x => Object.assign({}, x, { id: x.id + '' })))
+    },
+    getActivityAllocations: () => {
+        return axiosClient.get('/activityAllocations')
+            .then(result => result.data.map(x => Object.assign({}, x, { id: x.id + '' })))
+    }
 }

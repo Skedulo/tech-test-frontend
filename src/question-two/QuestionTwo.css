@@ -1,0 +1,17 @@
+.job-card {
+    background-color: #F35730;
+    float: left;
+    position: relative;
+    margin-right: 5px;
+    padding: 5px;
+    top: 1px;
+}
+
+.activity-card {
+    background-color: #F3A930;
+    float: left;
+    position: relative;
+    margin-right: 5px;
+    padding: 5px;
+    top: 1px;
+}
