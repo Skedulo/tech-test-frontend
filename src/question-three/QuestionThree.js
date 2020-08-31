@@ -18,24 +18,29 @@ export const QuestionThree = (props) => {
     const [jobs, setJobs] = useState([]);
 
     useEffect(() => {
-        let promises = [];
-        promises.push(props.service.getJobs());
-        promises.push(props.service.getJobAllocations());
 
-        Promise.all(promises).then((responses) => {
-            let [jobs, job_allocations] = responses;
-            setJobs(
-                jobs.map(job => {
-                    let number_allocations = job_allocations.filter(job_allocation => {
-                        return job_allocation.jobId == job.id
-                    });
-                    job.number_allocations = number_allocations.length;
-                    return job;
-                })
-            );
+        function loadData() {
+            let promises = [];
+            promises.push(props.service.getJobs());
+            promises.push(props.service.getJobAllocations());
 
-            setLoading(false);
-        });
+            Promise.all(promises).then((responses) => {
+                let [jobs, job_allocations] = responses;
+                setJobs(
+                    jobs.map(job => {
+                        let number_allocations = job_allocations.filter(job_allocation => {
+                            return job_allocation.jobId == job.id
+                        });
+                        job.number_allocations = number_allocations.length;
+                        return job;
+                    })
+                );
+
+                setLoading(false);
+            });
+        }
+
+        loadData();
     }, []);
 
     let job_lists = [];

@@ -34,9 +34,9 @@ export const QuestionOne = (props) => {
                     } else {
                         setJobs(responses[0]);
                     }
+                    setLoading(false);
                 });
             }
-            setLoading(false);
         }
         loadData();
     }, [search])
@@ -63,7 +63,6 @@ export const QuestionOne = (props) => {
         } else {
             job_lists = null;
         }
-
     }
 
     return (
