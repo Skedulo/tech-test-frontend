@@ -36,6 +36,8 @@ export const QuestionOne = (props) => {
                     }
                     setLoading(false);
                 });
+            } else {
+                setLoading(false);
             }
         }
         loadData();
