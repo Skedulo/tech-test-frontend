@@ -15,6 +15,7 @@ export const typeDefs = gql`
     contact: Contact
     start: String
     end: String
+    location: String
   }
   
   type Activity {
