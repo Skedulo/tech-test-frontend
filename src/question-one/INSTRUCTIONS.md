@@ -16,4 +16,4 @@ Note: We have provided a `service` prop to the component that is defined in /src
 
 ### What we're looking for
 
-The goal of Question 1 is to see how our candidates think through form submissions and what scenarios that a user will likely encounter, and how to ensure future maintainability of their solution. An example to show future maintainability would be to include some unit tests validating the scenarios that a user is likely to encounter.
+The goal of Question 1 is to see how candidates think through form submissions and what scenarios a user is likely to encounter whilst ensuring future maintainability of their solution. An example to demonstrate future maintainability is writing unit tests to validate the scenarios you have accounted for.
