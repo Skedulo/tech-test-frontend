@@ -13,3 +13,7 @@ And finally when the results are displayed we will need to see:
 - The name of the Contact assigned to the job
 
 Note: We have provided a `service` prop to the component that is defined in /src/service/DataService.js.  It has access to a graphql client and a http request library.  If you wish to fetch data from the server we suggest you do it from there.
+
+### What we're looking for
+
+The goal of Question 1 is to see how our candidates think through form submissions and what scenarios that a user will likely encounter, and how to ensure future maintainability of their solution. An example to show future maintainability would be to include some unit tests validating the scenarios that a user is likely to encounter.

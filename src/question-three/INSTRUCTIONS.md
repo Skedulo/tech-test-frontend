@@ -12,3 +12,7 @@ Some must have functionality includes:
 * Both main columns should scroll independently and only vertically when filled with content.
 * The content for the header could be dynamic. In the layout it only has heading text, but it could have supplementary text, tabs or some other dynamically sized content.
 * The content for the right most column does not need to be dynamic nor correlate to anything within the data, it only needs to be populated with copies of the boxes shown in the mockups.  We also need to see that section populated with enough content that it would need to be scrolled when displayed on a normal sized monitor.
+
+### What we're looking for
+
+Question 3 is our test to see how people approach CSS and styling of an application. Here we're looking to see how our candidates can deliver a solution similar to the [Page Layout](https://www.figma.com/file/K1Z6ZQp2nmFamEsjMEQ6LoBW/Question-three?node-id=1%3A34) using a CSS solution on top of any rendered cards that they think they need.
