@@ -11,3 +11,7 @@ Once you have that data we’d like you to display it in the Swimlane component 
 Note: While it would be better to have the server expose an endpoint that provides all this data in a nice format, we want to see what you do when given data from a couple of different sources.
 
 Note: We have provided a `service` prop to the component that is defined in /src/service/DataService.js.  It has access to a graphql client and a http request library.  If you wish to fetch data from the server we suggest you do it from there.
+
+### What we're looking for
+
+The goal of Question 2 is to see how our candidates reason the merging of multiple endpoints and produce a clean code solution. Our primary view will be on code readability and any performance compromises made. Including some testing would be beneficial as well as it would create an opportunity to iterate through the solution while trying to find a solution that is clear.
