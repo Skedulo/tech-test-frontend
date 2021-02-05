@@ -30,4 +30,4 @@ Once you have completed all exercises it would be great to see a readme that con
 * [Question 2](./src/question-two/INSTRUCTIONS.md) - Data manipulation from multiple sources
 * [Question 3](./src/question-three/INSTRUCTIONS.md) - Responsive CSS design
 
-Good luck! And if you have any questions, don't hesitate to contact your hiring manager.
+Good luck! And if you have any questions, don't hesitate to contact your hiring manager
