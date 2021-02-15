@@ -26,7 +26,7 @@ interface ISwimlaneProps {
 }
 
 export const Swimlane: React.FC<ISwimlaneProps> = (props) => (
-  <div className={"swimlane__container"}>
+  <div className={"swimlane"}>
     {props.lanes.map((lane) => (
       <Lane
         title={lane.title}
