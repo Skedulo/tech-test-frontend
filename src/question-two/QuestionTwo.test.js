@@ -12,7 +12,7 @@ const mockDataService = {
   getResources: () => Promise.resolve(data.resources)
 }
 
-test('renders app', async () => {
+test('fetched and merged data is in the expected shape', async () => {
   render(<QuestionTwo service={mockDataService} />)
 
   await wait()
