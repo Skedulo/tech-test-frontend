@@ -4,13 +4,13 @@ import { IAppTabContainer } from "../common/types"
 import { SectionGroup } from "../components/section/SectionGroup"
 import { SectionPanel } from "../components/section/SectionPanel"
 
-interface Lane {
-  title: string
-  cards: {
+interface ResourceSchedule {
+  resourceName: string
+  resourceId: number
+  allocations: {
     allocId: number,
     allocType: 'job' | 'activity',
-    resourceId: number,
-    description: string,
+    name: string,
     start: string,
     end: string
   }[]
