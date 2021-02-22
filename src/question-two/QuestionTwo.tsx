@@ -4,13 +4,17 @@ import { IAppTabContainer } from "../common/types"
 import { SectionGroup } from "../components/section/SectionGroup"
 import { SectionPanel } from "../components/section/SectionPanel"
 
-import "./QuestionTwo.css"
-
-/**
- * Please do not change these dates, the data on the server all fall within the 01/09/2018
- */
-const RANGE_START = new Date("2018-09-01T00:00:00Z")
-const RANGE_END = new Date("2018-09-01T24:00:00Z")
+interface ResourceSchedule {
+  resourceName: string
+  resourceId: number
+  allocations: {
+    allocId: number,
+    allocType: 'job' | 'activity',
+    name: string,
+    start: string,
+    end: string
+  }[]
+}
 
 export const QuestionTwo: React.FC<IAppTabContainer> = (props) => {
   return (
