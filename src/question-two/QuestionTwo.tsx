@@ -8,7 +8,6 @@ interface ResourceSchedule {
   resourceName: string
   resourceId: number
   allocations: {
-    allocId: number,
     allocType: 'job' | 'activity',
     name: string,
     start: string,
