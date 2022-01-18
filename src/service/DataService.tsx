@@ -13,7 +13,7 @@ const axiosClient = axios.create({
 
 export const DataService: IDataService = {
   getJobsWithSearchTerm: (searchTerm: string) => {
-    return graphClient.query<{ jobs: Pick<Job, 'name' | 'start' | 'end'> & { contact: Contact }[] }>({
+    return graphClient.query<{ jobs: (Pick<Job, 'name' | 'start' | 'end'> & { contact: Contact })[] }>({
       query: gql`
       query ($searchTerm: String){
         jobs(name: $searchTerm) {
@@ -63,5 +63,11 @@ export const DataService: IDataService = {
     return axiosClient
       .get<Resource[]>('/resources')
       .then(result => result.data)
-  }
+  },
+
+  getContacts: () => {
+    return axiosClient
+      .get<Job[]>('/contacts')
+      .then(result => result.data)
+  },
 }

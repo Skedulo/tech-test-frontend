@@ -42,9 +42,10 @@ export interface Resource {
 
 export interface IDataService {
   getJobs: () => Promise<Job[]>
-  getJobsWithSearchTerm: (searchTerm: string) => Promise<Pick<Job, 'name' | 'start' | 'end'> & { contact: Contact }[]>
+  getJobsWithSearchTerm: (searchTerm: string) => Promise<(Pick<Job, 'name' | 'start' | 'end'> & { contact: Contact })[]>
   getActivities: () => Promise<Activity[]>
   getJobAllocations: () => Promise<JobAllocations[]>
   getActivityAllocations: () => Promise<ActivityAllocations[]>
   getResources: () => Promise<Resource[]>
+  getContacts: () => Promise<Contact[]>
 }

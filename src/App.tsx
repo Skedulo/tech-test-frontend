@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import "./App.css"
+import "./loader.css"
 
 import { DataService } from "./service/DataService"
 import { QuestionOne } from "./question-one/QuestionOne"

@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
+    "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^7.1.2",
     "@types/jest": "^26.0.20",
     "@types/node": "^14.14.28",
@@ -14,6 +14,8 @@
     "axios": "^0.21.1",
     "graphql": "^14.7.0",
     "graphql-tag": "^2.10.4",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
@@ -22,6 +24,7 @@
   "scripts": {
     "bootstrap": "yarn install && yarn server:bootstrap",
     "start": "yarn server:start & react-scripts start",
+    "start:dev": "NODE_OPTIONS=--openssl-legacy-provider && yarn start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -42,5 +45,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.178"
   }
 }
