@@ -26,7 +26,7 @@
     "start": "yarn server:start & react-scripts start",
     "start:dev": "NODE_OPTIONS=--openssl-legacy-provider && yarn start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --env=jest-environment-jsdom-sixteen",
     "eject": "react-scripts eject",
     "server:bootstrap": "cd ./src/server && yarn install",
     "server:start": "cd ./src/server && yarn dev"
