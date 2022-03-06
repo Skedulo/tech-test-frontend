@@ -1,0 +1,21 @@
+.question-three__job-card {
+  background: #FFFFFF;
+  padding: 10px;
+  margin: 15px;
+}
+
+.question-three__secondary-text {
+  color: #C4C4C4;
+}
+
+.question-three__job-date-time {
+  color: #8D8383;
+}
+
+.question-three__job-id {
+  font-size: 16px;
+}
+
+.question-three__job-name {
+  font-size: 20px;
+}

@@ -1,0 +1,15 @@
+.clear-button {
+  background: transparent;
+  margin-left: 10px;
+  border-radius: 1px;
+  border: 1px solid;
+  padding: 2px;
+}
+
+.clear-button:hover {
+  cursor: pointer;
+}
+
+.form-label {
+  margin-right: 10px;
+}

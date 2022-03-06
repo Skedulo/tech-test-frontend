@@ -40,10 +40,34 @@ export interface Resource {
   name: string
 }
 
+export interface JobAndActivityAllocations {
+  resources: Resource[],
+  activityAllocations: ActivityAllocationSingle[],
+  jobAllocations: JobAllocationSingle[]
+}
+
+// not sure how to distinguish between this and ActivityAllocation
+export interface ActivityAllocationSingle {
+  resource: {
+    id: number
+  },
+  activity: Pick<Activity, 'name' | 'start' | 'end'>
+}
+
+export interface JobAllocationSingle {
+  resource: {
+    id: number
+  },
+  job: Pick<Job, 'name' | 'start' | 'end'>
+}
+
+export type JobSearchFields = Pick<Job, 'name' | 'start' | 'end'> & { contact: Contact }
+
 export interface IDataService {
   getJobs: () => Promise<Job[]>
-  getJobsWithSearchTerm: (searchTerm: string) => Promise<Pick<Job, 'name' | 'start' | 'end'> & { contact: Contact }[]>
+  getJobsWithSearchTerm: (searchTerm: string) => Promise<JobSearchFields[]>
   getActivities: () => Promise<Activity[]>
+  getJobAndActivityAllocations: () => Promise<JobAndActivityAllocations>,
   getJobAllocations: () => Promise<JobAllocations[]>
   getActivityAllocations: () => Promise<ActivityAllocations[]>
   getResources: () => Promise<Resource[]>

@@ -1,0 +1,35 @@
+.question-three__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.question-three__tabheader {
+  color: #FFFFFF;
+  flex-grow: 0;
+  background: #3D9BFF;
+}
+
+.question-three__content {
+  flex-grow: 1;
+  overflow: hidden;
+  display: flex;
+}
+
+.question-three__job-list {
+  overflow: auto;
+  width: 400px;
+  background: #e4eef1;
+}
+
+.question-three_job-details {
+  overflow: auto;
+  flex-grow: 1;
+}
+
+.question-three-job-details-item {
+  background: #e4eef1;
+  padding: 15px;
+  margin: 15px;
+  height: 100px;
+}
+

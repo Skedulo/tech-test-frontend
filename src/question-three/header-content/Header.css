@@ -1,0 +1,14 @@
+.question-three__h1 {
+  font-weight: normal;
+  color: #FFFFFF;
+  margin: 0;
+  padding: 0;
+}
+
+.question-three__header-content {
+  padding: 15px 20px;
+}
+
+.question-three__header-content.question-three__header-has-tabs {
+  padding-bottom: 0;
+}

@@ -1,7 +1,16 @@
 import ApolloClient from 'apollo-boost';
 import gql from 'graphql-tag';
 import axios from 'axios';
-import { Activity, ActivityAllocations, Contact, IDataService, Job, JobAllocations, Resource } from '../common/types';
+import {
+  Activity,
+  ActivityAllocations,
+  IDataService,
+  Job,
+  JobAllocations,
+  JobAndActivityAllocations,
+  JobSearchFields,
+  Resource
+} from '../common/types';
 
 const graphClient = new ApolloClient({
   uri: 'http://localhost:3500/graphql'
@@ -13,7 +22,7 @@ const axiosClient = axios.create({
 
 export const DataService: IDataService = {
   getJobsWithSearchTerm: (searchTerm: string) => {
-    return graphClient.query<{ jobs: Pick<Job, 'name' | 'start' | 'end'> & { contact: Contact }[] }>({
+    return graphClient.query<{ jobs: JobSearchFields[] }>({
       query: gql`
       query ($searchTerm: String){
         jobs(name: $searchTerm) {
@@ -33,6 +42,40 @@ export const DataService: IDataService = {
     })
       .then(result => result.data)
       .then(data => data.jobs)
+  },
+
+  getJobAndActivityAllocations: () => {
+    return graphClient.query<JobAndActivityAllocations>({
+      query: gql`
+      query jobAndActivityAllocations {
+        resources {
+          id
+          name
+        }
+        activityAllocations {
+          resource {
+            id
+          }
+          activity {
+            name
+            start
+            end
+          }
+        }
+        jobAllocations {
+          resource {
+            id
+          }
+          job {
+            name
+            start
+            end
+          }
+        }
+      }
+      `
+    })
+      .then(result => result.data)
   },
 
   getJobs: () => {

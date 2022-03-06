@@ -1,13 +1,13 @@
 .app__container {
   display: flex;
-  height: 100%;
-  min-height: 100vh;
+  height: 100vh;
   flex-direction: column;
 
   background-color: #f5f7fa;
 }
 
 .app__header {
+  flex-grow: 0;
   color: white;
   background-color: #007ee6;
   padding: 0 20px;
@@ -44,7 +44,7 @@
 }
 
 .app__content-blank {
-  height: calc(100vh - 92px)
+  flex-grow: 1;
 }
 
 .section__panel {

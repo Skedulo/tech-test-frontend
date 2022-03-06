@@ -6,13 +6,13 @@ import { QuestionOne } from "./question-one/QuestionOne"
 import { QuestionTwo } from "./question-two/QuestionTwo"
 import { QuestionThree } from "./question-three/QuestionThree"
 
-enum AppTabs {
+export enum AppTabs {
   First = "first",
   Second = "second",
   Third = "three",
 }
 
-const AvailableTabs: React.FC<{
+export const AvailableTabs: React.FC<{
   onSelect: (tab: AppTabs) => void
   selectedTab: AppTabs
 }> = ({ onSelect, selectedTab }) => {
@@ -78,13 +78,13 @@ function App() {
         <h1 className="app__title">Skedulo Technical Test</h1>
         <AvailableTabs onSelect={selectTab} selectedTab={selectedTab} />
       </header>
-      <div
-        className={
-          selectedTab !== AppTabs.Third ? "app__content" : "app__content-blank"
-        }
-      >
+      {selectedTab === AppTabs.Third ? (
         <Tabs selectedTab={selectedTab} />
-      </div>
+      ) : (
+        <div className="app__content">
+          <Tabs selectedTab={selectedTab} />
+        </div>
+      )}
     </div>
   )
 }

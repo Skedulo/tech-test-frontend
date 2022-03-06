@@ -1,0 +1,9 @@
+.job-search-results-list .job-search-results-header {
+  background: lightgrey;
+}
+
+.job-search-results-list .job-search-results-header,
+.job-search-results-list .job-search-results-body {
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr 1fr;
+}
