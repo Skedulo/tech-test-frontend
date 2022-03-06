@@ -22,7 +22,6 @@
   "scripts": {
     "bootstrap": "yarn install && yarn server:bootstrap",
     "start": "yarn server:start & react-scripts start",
-    "start-only": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -43,9 +42,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@babel/core": "^7.17.5",
-    "@babel/node": "^7.16.8"
   }
 }
