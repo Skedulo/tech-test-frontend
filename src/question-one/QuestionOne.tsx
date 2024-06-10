@@ -1,12 +1,12 @@
-import React from "react"
-import { IAppTabContainer } from "../common/types"
+import React from 'react'
+import { IAppTabContainer } from '../common/types'
 
-import { SectionGroup } from "../components/section/SectionGroup"
-import { SectionPanel } from "../components/section/SectionPanel"
+import { SectionGroup } from '../components/section/SectionGroup'
+import { SectionPanel } from '../components/section/SectionPanel'
 
-import "./QuestionOne.css"
+import './QuestionOne.css'
 
-export const QuestionOne: React.FC<IAppTabContainer> = () => {
+export const QuestionOne = (props: IAppTabContainer) => {
   return (
     <SectionGroup>
       <SectionPanel>Please refer to INSTRUCTIONS.md</SectionPanel>

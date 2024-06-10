@@ -7,7 +7,7 @@ export class GenericModel {
       baseURL: 'http://localhost:3400' // json-server endpoint
     })
   }
-  
+
   list() {
     return this.api.get(`/${this.endpoint}`).then(res => res.data)
   }
@@ -37,7 +37,7 @@ export class Job extends GenericModel {
   list() {
     this.hitCount++
     setTimeout(() => this.hitCount--, 5000)
-    if(this.hitCount > 20){
+    if (this.hitCount > 20) {
       throw new Error('You have hit the rate limit of this endpoint')
     }
     return super.list()
