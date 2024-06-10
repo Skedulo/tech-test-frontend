@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.98",
     "@types/react": "^18.3.3",
@@ -17,7 +14,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-scripts": "^5.0.1",
-    "typescript": "^4.9.5",
+    "typescript": "^5.4.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -28,8 +25,8 @@
     "eject": "react-scripts eject",
     "server:bootstrap": "cd ./src/server && yarn install",
     "server:start": "cd ./src/server && yarn dev",
-    "prettier": "prettier --check '**/*.{ts,tsx}'",
-    "prettier:fix": "prettier --write '**/*.{ts,tsx}'",
+    "prettier": "prettier --check '**/*.{ts,tsx,js}'",
+    "prettier:fix": "prettier --write '**/*.{ts,tsx,js}'",
     "prepare": "husky"
   },
   "eslintConfig": {
@@ -55,8 +52,20 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/preset-typescript": "^7.24.6",
+    "@testing-library/dom": "^10.1.0",
+    "@testing-library/jest-dom": "^6.4.5",
+    "@testing-library/react": "^15.0.7",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/axios": "^0.14.0",
+    "babel-jest": "^29.7.0",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.5",
     "prettier": "^3.3.1"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^axios$": "axios/dist/node/axios.cjs"
+    }
   }
 }
