@@ -17,7 +17,7 @@ export const typeDefs = gql`
     end: String
     location: String
   }
-  
+
   type Activity {
     id: ID
     name: String
@@ -48,26 +48,27 @@ export const typeDefs = gql`
   }
 
   type Query {
-    jobs(name: String): [Job],
-    contacts: [Contact],
-    activities: [Activity],
-    resources: [Resource],
-    jobAllocations: [JobAllocation],
-    activityAllocations: [ActivityAllocation]   
+    jobs(name: String): [Job]
+    contacts: [Contact]
+    activities: [Activity]
+    resources: [Resource]
+    jobAllocations: [JobAllocation]
+    activityAllocations: [ActivityAllocation]
   }
 `
 
 export const resolvers = {
   Query: {
     jobs(obj, args) {
-      return jobModel.list()
-        .then(results => results.filter(x => {
-          if(!args.name) {
+      return jobModel.list().then(results =>
+        results.filter(x => {
+          if (!args.name) {
             return true
           }
 
           return x.name.toLowerCase().indexOf(args.name.toLowerCase()) >= 0
-        }))
+        })
+      )
     },
     contacts() {
       return contactModel.list()

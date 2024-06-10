@@ -17,6 +17,4 @@ app.get('/ping', (req, res) => {
   res.send({ text: 'pong' })
 })
 
-app.listen(PORT, () =>
-  console.log(`Listening at http://localhost:${PORT}/graphql`)
-)
+app.listen(PORT, () => console.log(`Listening at http://localhost:${PORT}/graphql`))

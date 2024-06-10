@@ -44,7 +44,7 @@
 }
 
 .app__content-blank {
-  height: calc(100vh - 92px)
+  height: calc(100vh - 92px);
 }
 
 .section__panel {
@@ -54,5 +54,5 @@
 }
 
 .section__panel:last-child {
-  border-bottom-color: transparent
+  border-bottom-color: transparent;
 }

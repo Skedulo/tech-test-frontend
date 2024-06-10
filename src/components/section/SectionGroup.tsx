@@ -1,3 +1,7 @@
-import React from "react"
+import React from 'react'
 
-export const SectionGroup: React.FC = (props) => <div>{props.children}</div>
+interface Props {
+  children: React.ReactNode
+}
+
+export const SectionGroup = (props: Props) => <div>{props.children}</div>
