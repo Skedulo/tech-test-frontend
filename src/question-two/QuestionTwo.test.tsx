@@ -3,9 +3,11 @@ import { render, screen } from '@testing-library/react'
 import * as data from '../server/db.json'
 
 import { QuestionTwo } from './QuestionTwo'
+import { IDataService } from '../common/types'
 
-const mockDataService = {
+const mockDataService: IDataService = {
   getJobs: () => Promise.resolve(data.jobs),
+  getJobsWithSearchTerm: () => Promise.resolve([]),
   getJobAllocations: () => Promise.resolve(data.jobAllocations),
   getActivities: () => Promise.resolve(data.activities),
   getActivityAllocations: () => Promise.resolve(data.activityAllocations),

@@ -4,10 +4,11 @@ export interface IAppTabContainer {
 
 export interface Job {
   id: number
-  contactId: string
+  contactId: number
   start: string
   end: string
   location: string
+  status: string
   name: string
 }
 
@@ -40,9 +41,11 @@ export interface Resource {
   name: string
 }
 
+export type JobWithSearchTerm = Pick<Job, 'name' | 'start' | 'end'> & { contact: Contact }
+
 export interface IDataService {
   getJobs: () => Promise<Job[]>
-  getJobsWithSearchTerm: (searchTerm: string) => Promise<Pick<Job, 'name' | 'start' | 'end'> & { contact: Contact }[]>
+  getJobsWithSearchTerm: (searchTerm: string) => Promise<JobWithSearchTerm[]>
   getActivities: () => Promise<Activity[]>
   getJobAllocations: () => Promise<JobAllocations[]>
   getActivityAllocations: () => Promise<ActivityAllocations[]>

@@ -11,7 +11,9 @@ const server = new ApolloServer({
   playground: true
 })
 
-server.applyMiddleware({ app })
+server.start().then(() => {
+  server.applyMiddleware({ app })
+})
 
 app.get('/ping', (req, res) => {
   res.send({ text: 'pong' })
