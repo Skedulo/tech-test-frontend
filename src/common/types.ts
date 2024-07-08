@@ -41,7 +41,7 @@ export interface Resource {
   name: string
 }
 
-export type JobWithSearchTerm = Pick<Job, 'name' | 'start' | 'end' | 'status'> & { contact: Contact }
+export type JobWithSearchTerm = Pick<Job, 'name' | 'start' | 'end'> & { contact: Contact }
 
 export interface IDataService {
   getJobs: () => Promise<Job[]>

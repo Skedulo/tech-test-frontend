@@ -31,7 +31,6 @@ export const DataService: IDataService = {
               name
               start
               end
-              status
               contact {
                 id
                 name
