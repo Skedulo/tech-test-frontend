@@ -16,6 +16,7 @@ export const typeDefs = gql`
     start: String
     end: String
     location: String
+    status: String
   }
 
   type Activity {
